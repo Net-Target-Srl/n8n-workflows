@@ -1,0 +1,102 @@
+{
+  "active": true,
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Microsoft Outlook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Microsoft Outlook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-11-02T09:26:19.304Z",
+  "id": "lzj64w5LzV2yvlLI",
+  "meta": null,
+  "name": "Consamb - Mail periodica Linda",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "a1c7c62e-1589-482a-b6f2-a16a63ec31f6",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        480,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "toRecipients": "tecnici.laboratorio@consamb.it",
+        "subject": "Controllo carta R frequenza mensile in scadenza: da eseguire",
+        "bodyContent": "Controllo carta R frequenza mensile in scadenza: da eseguire\n\nLinda\n\n\nMail inviata automaticamente",
+        "additionalFields": {
+          "bccRecipients": "mattia.bergamelli@consamb.it",
+          "replyTo": "linda.cialdella@consamb.it"
+        }
+      },
+      "id": "76f85877-d7bc-490e-9798-20b96ddcee86",
+      "name": "Microsoft Outlook",
+      "type": "n8n-nodes-base.microsoftOutlook",
+      "typeVersion": 2,
+      "position": [
+        860,
+        320
+      ],
+      "credentials": {
+        "microsoftOutlookOAuth2Api": {
+          "id": "a7NFolafWuNIO9mI",
+          "name": "robot.ict@consamb.it"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "months",
+              "triggerAtHour": 10
+            }
+          ]
+        }
+      },
+      "id": "a308c6cc-1f2a-4382-8bc7-3b4cb6f1fc7c",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        480,
+        440
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrencyRules": []
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2023-11-02T10:03:15.000Z",
+  "versionId": "217084f6-fc8d-4fe7-8e21-db506c6b0e07"
+}
