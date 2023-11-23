@@ -1,0 +1,134 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Microsoft Outlook",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "List gestionale calendars",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-10-31T10:17:09.089Z",
+  "id": "WOKLcFaM7Tm3i6T9",
+  "meta": null,
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "884a3efc-d40c-4feb-a1a8-1d59b656fbc5",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        460,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "event",
+        "operation": "get",
+        "calendarId": {
+          "__rl": true,
+          "value": "AAMkAGE0NTVhZTg3LTEzYjItNGNkMy05ZDgzLTI5MmExMzUwY2EwYgBGAAAAAACJVEePWNwxTbjU9Bd2z5kBBwCioWfsJZ01TLJjEgezKZxGAAAAAAEGAACioWfsJZ01TLJjEgezKZxGAAEsmgfKAAA=",
+          "mode": "list",
+          "cachedResultName": "Rapportini - Mattia Bergamelli"
+        },
+        "eventId": {
+          "__rl": true,
+          "value": "AAMkAGE0NTVhZTg3LTEzYjItNGNkMy05ZDgzLTI5MmExMzUwY2EwYgBGAAAAAACJVEePWNwxTbjU9Bd2z5kBBwCioWfsJZ01TLJjEgezKZxGAAEsmS-HAACioWfsJZ01TLJjEgezKZxGAAEsmikbAAA=",
+          "mode": "id"
+        },
+        "output": "raw"
+      },
+      "id": "1b379581-addf-4eb4-b1b9-e79af59ad4a0",
+      "name": "Microsoft Outlook",
+      "type": "n8n-nodes-base.microsoftOutlook",
+      "typeVersion": 2,
+      "position": [
+        860,
+        120
+      ],
+      "credentials": {
+        "microsoftOutlookOAuth2Api": {
+          "id": "uQ4EvYpbYU7cTQq2",
+          "name": "gestionale@net-target.it"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://graph.microsoft.com/v1.0/users/gestionale@net-target.it/calendars",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "microsoftOutlookOAuth2Api",
+        "options": {}
+      },
+      "id": "f6d1414b-ca0b-49d0-994e-7348ce0c6a85",
+      "name": "List gestionale calendars",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        800,
+        460
+      ],
+      "credentials": {
+        "microsoftOutlookOAuth2Api": {
+          "id": "uQ4EvYpbYU7cTQq2",
+          "name": "gestionale@net-target.it"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.microsoft.com/v1.0/users/gestionale@net-target.it/calendars/AAMkADgzZjZlZTVlLTEyOGYtNDBlNi05NmQ3LWQ3N2I2YmFkZDg0MABGAAAAAACLh4AQIuZNTr3GKLoDoTBJBwCi-cJPyHAxQ5-4TCX-KSeIAAAAAAEGAACi-cJPyHAxQ5-4TCX-KSeIAAAAAA01AAA=/events",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "microsoftOutlookOAuth2Api",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{  \"subject\": \"Cliente: Prova titolo\",  \"body\": {    \"contentType\": \"text\",    \"content\": \"#RAPP#12345#RAPP#\\nDopo questa dicitura si possono aggiungere tutte le note possibili\"  },  \"start\": {      \"dateTime\": \"2023-10-31T16:00:00\",      \"timeZone\": \"Central Europe Time\"  },  \"end\": {      \"dateTime\": \"2023-10-31T17:00:00\",      \"timeZone\": \"Central Europe Time\"  },  \"location\":{      \"displayName\":\"Indirizzo del cliente\"  }}",
+        "options": {}
+      },
+      "id": "686d5f60-672b-49ba-bb03-491ceb5fc68b",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        680,
+        520
+      ],
+      "credentials": {
+        "microsoftOutlookOAuth2Api": {
+          "id": "uQ4EvYpbYU7cTQq2",
+          "name": "gestionale@net-target.it"
+        }
+      },
+      "disabled": true
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2023-10-31T14:48:39.000Z",
+  "versionId": "65336589-7531-4d10-b2cb-47a6423e897e"
+}
