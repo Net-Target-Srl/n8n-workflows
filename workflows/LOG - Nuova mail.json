@@ -1,0 +1,389 @@
+{
+  "active": false,
+  "connections": {
+    "Email Trigger (IMAP)": {
+      "main": [
+        [
+          {
+            "node": "FiltraEmail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "FiltraEmail": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Registra invio notifica",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Send Email",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Redis",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Pushcut",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-10-30T16:36:25.866Z",
+  "id": "SMyNRjCLwHX9Tsfz",
+  "meta": null,
+  "name": "LOG - Nuova mail",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "7db30d3b-bfd4-4dcd-af37-5703c5b4be46",
+      "name": "Email Trigger (IMAP)",
+      "type": "n8n-nodes-base.emailReadImap",
+      "typeVersion": 2,
+      "position": [
+        -320,
+        820
+      ],
+      "credentials": {
+        "imap": {
+          "id": "1",
+          "name": "IMAP - log@rapportini.net-target.it"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const str = $input.item.json.from;\n\n$input.item.json.indirizzo = str.split('<').pop().split('>')[0];\nreturn $input.item;"
+      },
+      "id": "793c579a-a5e2-4a86-879e-acc270858eee",
+      "name": "FiltraEmail",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        -60,
+        820
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://log.net-target.it/api/result.php?apikey=9KDPVCB4REKT3G9SL8V6T7BGVAZRWWT2",
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "indirizzo",
+              "value": "={{ $json.indirizzo }}"
+            },
+            {
+              "name": "oggetto",
+              "value": "={{ $json.subject }}"
+            },
+            {
+              "name": "corpoplain",
+              "value": "={{ $json.textPlain }}"
+            },
+            {
+              "name": "corpohtml",
+              "value": "={{ $json.textHtml }}"
+            },
+            {
+              "name": "dataora",
+              "value": "={{ $json.date }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "794688be-aa22-47c0-8394-cc21e7caf3ec",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        180,
+        820
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{ $input.item.json.tipo }}",
+        "rules": {
+          "rules": [
+            {
+              "value2": "email"
+            },
+            {
+              "value2": "telegram",
+              "output": 1
+            },
+            {
+              "value2": "push",
+              "output": 2
+            }
+          ]
+        }
+      },
+      "id": "af43dbb3-3a24-437c-bf28-ef2e4142a43d",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        420,
+        820
+      ]
+    },
+    {
+      "parameters": {
+        "fromEmail": "Log Manager <net-target.log@nettarget.it>",
+        "toEmail": "={{ $json.utente }}",
+        "subject": "={{ $json.oggetto }}",
+        "text": "={{ $json.messaggio }}",
+        "options": {}
+      },
+      "id": "7a0f1cb3-a064-4224-84b9-aa8b0114f9d1",
+      "name": "Send Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2,
+      "position": [
+        820,
+        520
+      ],
+      "credentials": {
+        "smtp": {
+          "id": "9",
+          "name": "SMTP nettarget"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.utente }}",
+        "text": "={{ $json.text }}",
+        "additionalFields": {
+          "parse_mode": "HTML"
+        }
+      },
+      "id": "6fc38e49-acec-4a43-b3d5-90f431439acc",
+      "name": "Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        820,
+        720
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "2",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "={{ $json.result.chat.id }} -  {{ $json.result.message_id }}",
+        "value": "={{ $json.esecuzione }}",
+        "keyType": "string"
+      },
+      "id": "f1bc9f3d-d431-478a-b151-d8e8fe03a4c0",
+      "name": "Redis",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        1320,
+        840
+      ],
+      "credentials": {
+        "redis": {
+          "id": "7",
+          "name": "Redis LOG_PHP"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combinationMode": "multiplex",
+        "options": {}
+      },
+      "id": "7abe126c-c1ed-4e9c-87f1-0438aba4fa8d",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2,
+      "position": [
+        1100,
+        840
+      ]
+    },
+    {
+      "parameters": {
+        "table": {
+          "__rl": true,
+          "value": "notifiche",
+          "mode": "list",
+          "cachedResultName": "notifiche"
+        },
+        "columns": "sessione,esecuzione,tipo,utente,oggetto,messaggio,text",
+        "options": {}
+      },
+      "id": "5afb527b-d793-44f4-a9e8-30cce186d8e6",
+      "name": "Registra invio notifica",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 1,
+      "position": [
+        460,
+        460
+      ],
+      "retryOnFail": true,
+      "maxTries": 2,
+      "credentials": {
+        "mySql": {
+          "id": "3",
+          "name": "MySQL LOG"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.pushcut.io/QSEMfMwl3xVaNbItLAYc5/notifications/LogNetTarget",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "text",
+              "value": "={{ $json.messaggio }}"
+            },
+            {
+              "name": "title",
+              "value": "=LOG: {{ $json.oggetto }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "e62b8741-a691-4cca-a9bb-4b47484a6ccf",
+      "name": "HTTP Request1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        820,
+        1020
+      ]
+    },
+    {
+      "parameters": {
+        "notificationName": "LogNetTarget",
+        "additionalFields": {
+          "title": ""
+        }
+      },
+      "id": "9b942310-82f6-4337-b872-d2e58d119b92",
+      "name": "Pushcut",
+      "type": "n8n-nodes-base.pushcut",
+      "typeVersion": 1,
+      "position": [
+        1060,
+        1040
+      ],
+      "credentials": {
+        "pushcutApi": {
+          "id": "10",
+          "name": "Pushcut account"
+        }
+      },
+      "disabled": true
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2023-10-30T16:36:25.866Z",
+  "versionId": "0f5a3db3-d971-4be9-8504-d21534a721a2"
+}
