@@ -1,0 +1,74 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Microsoft Outlook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-11-16T16:33:51.781Z",
+  "id": "MqLTBNwIgvIEbdwa",
+  "meta": null,
+  "name": "Errore backup Wasabi CLI - Upload S3",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "backup-gestionale-err-uploads3",
+        "options": {}
+      },
+      "id": "96c58766-29e7-4bc2-addb-592afa9b2222",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        620,
+        320
+      ],
+      "webhookId": "ca7e1b09-d235-4bfe-b402-60a9f4e7233f"
+    },
+    {
+      "parameters": {
+        "toRecipients": "log@rapportini.net-target.it",
+        "subject": "=Errore Upload S3 nel backup {{ $json.query.tipo }} del Gestionale",
+        "additionalFields": {}
+      },
+      "id": "d7549aca-ac55-46cf-8703-4573f4a6fdb7",
+      "name": "Microsoft Outlook",
+      "type": "n8n-nodes-base.microsoftOutlook",
+      "typeVersion": 2,
+      "position": [
+        840,
+        320
+      ],
+      "credentials": {
+        "microsoftOutlookOAuth2Api": {
+          "id": "uQ4EvYpbYU7cTQq2",
+          "name": "gestionale@net-target.it"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2023-11-16T07:56:55.120Z",
+      "updatedAt": "2023-11-16T07:56:55.120Z",
+      "id": "CyrGRy289uAYgKBf",
+      "name": "Gestionale Net Target"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2023-11-16T17:17:51.000Z",
+  "versionId": "0a0cf253-274d-4821-94c7-b91469296d15"
+}
