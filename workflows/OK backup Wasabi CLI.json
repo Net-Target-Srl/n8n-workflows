@@ -1,0 +1,74 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Microsoft Outlook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-11-16T16:43:47.294Z",
+  "id": "H2eHhFSTjGUYBWZe",
+  "meta": null,
+  "name": "OK backup Wasabi CLI",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "backup-gestionale-ok",
+        "options": {}
+      },
+      "id": "0cbf1b18-863c-45ce-9181-ece72f786e86",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        620,
+        320
+      ],
+      "webhookId": "50f7b3b4-8e2c-4a5c-9990-cb4df8eed150"
+    },
+    {
+      "parameters": {
+        "toRecipients": "log@rapportini.net-target.it",
+        "subject": "=Eseguito backup {{ $json.query.tipo }} del Gestionale",
+        "additionalFields": {}
+      },
+      "id": "92be48dc-875c-4d52-b084-ba7cc56eaee3",
+      "name": "Microsoft Outlook",
+      "type": "n8n-nodes-base.microsoftOutlook",
+      "typeVersion": 2,
+      "position": [
+        840,
+        320
+      ],
+      "credentials": {
+        "microsoftOutlookOAuth2Api": {
+          "id": "uQ4EvYpbYU7cTQq2",
+          "name": "gestionale@net-target.it"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2023-11-16T07:56:55.120Z",
+      "updatedAt": "2023-11-16T07:56:55.120Z",
+      "id": "CyrGRy289uAYgKBf",
+      "name": "Gestionale Net Target"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2023-11-16T17:17:36.000Z",
+  "versionId": "5c3510a0-6c4f-4f94-9263-030d3a2a117d"
+}
