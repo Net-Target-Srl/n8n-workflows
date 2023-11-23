@@ -1,0 +1,74 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Microsoft Outlook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-11-16T15:31:00.480Z",
+  "id": "cK55A79ho3QFOr9V",
+  "meta": null,
+  "name": "Errore backup Wasabi CLI - MySQLdump",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "backup-gestionale-err-mysqldump",
+        "options": {}
+      },
+      "id": "739d422a-a2af-4084-ae41-db22921f7f4c",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        620,
+        320
+      ],
+      "webhookId": "21e5f746-4207-4fbf-9a50-cbdcfb60399e"
+    },
+    {
+      "parameters": {
+        "toRecipients": "log@rapportini.net-target.it",
+        "subject": "=Errore MySQLdump nel backup {{ $json.query.tipo }} del Gestionale",
+        "additionalFields": {}
+      },
+      "id": "f47873db-17aa-4cf3-b8ae-1ba2e264ef2c",
+      "name": "Microsoft Outlook",
+      "type": "n8n-nodes-base.microsoftOutlook",
+      "typeVersion": 2,
+      "position": [
+        840,
+        320
+      ],
+      "credentials": {
+        "microsoftOutlookOAuth2Api": {
+          "id": "uQ4EvYpbYU7cTQq2",
+          "name": "gestionale@net-target.it"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2023-11-16T07:56:55.120Z",
+      "updatedAt": "2023-11-16T07:56:55.120Z",
+      "id": "CyrGRy289uAYgKBf",
+      "name": "Gestionale Net Target"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2023-11-16T17:18:03.000Z",
+  "versionId": "a8312658-cf75-43f8-a491-67c7ff7c33d8"
+}
