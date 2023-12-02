@@ -70,8 +70,8 @@
         "rule": {
           "interval": [
             {
-              "field": "months",
-              "triggerAtHour": 10
+              "field": "cronExpression",
+              "expression": "00 10 1 * *"
             }
           ]
         }
@@ -97,6 +97,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2023-11-02T10:03:15.000Z",
-  "versionId": "217084f6-fc8d-4fe7-8e21-db506c6b0e07"
+  "updatedAt": "2023-12-01T13:42:57.000Z",
+  "versionId": "6a3c5ed8-570b-4aea-a3c2-8118c17d442f"
 }
