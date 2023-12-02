@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "Schedule Trigger": {
       "main": [
@@ -150,7 +150,11 @@
   "settings": {
     "executionOrder": "v1"
   },
-  "staticData": null,
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrencyRules": []
+    }
+  },
   "tags": [
     {
       "createdAt": "2023-11-16T07:56:55.120Z",
@@ -159,7 +163,7 @@
       "name": "Gestionale Net Target"
     }
   ],
-  "triggerCount": 0,
-  "updatedAt": "2023-11-28T08:43:21.000Z",
-  "versionId": "f71a8fbe-fbe1-44a1-b784-67fb65bdd717"
+  "triggerCount": 1,
+  "updatedAt": "2023-12-01T14:20:16.000Z",
+  "versionId": "89431bea-0081-464c-bddc-faf1c023739d"
 }
