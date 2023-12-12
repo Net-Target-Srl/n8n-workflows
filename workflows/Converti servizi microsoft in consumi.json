@@ -1,0 +1,109 @@
+{
+  "active": true,
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Crypto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Crypto": {
+      "main": [
+        [
+          {
+            "node": "Carica servizi cliente",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-11T18:14:14.728Z",
+  "id": "FhzzrKfifqw75fM0",
+  "meta": null,
+  "name": "Converti servizi microsoft in consumi",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "months",
+              "triggerAtDayOfMonth": 13,
+              "triggerAtHour": 3
+            },
+            {
+              "field": "months",
+              "triggerAtDayOfMonth": 25,
+              "triggerAtHour": 3
+            }
+          ]
+        }
+      },
+      "id": "9b0a277b-ba5a-4f52-8a1a-a0c01759a65f",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        580,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "value": "={{ \"_service\" + $now.setZone('UTC').toFormat('yyyy-MM-dd') }}",
+        "dataPropertyName": "token"
+      },
+      "id": "c70ea7a6-6087-44fa-85b7-a2f862d21b9f",
+      "name": "Crypto",
+      "type": "n8n-nodes-base.crypto",
+      "typeVersion": 1,
+      "position": [
+        820,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://gestionale.ntcloud.it/servizi/convertiConsumiMicrosoft.php",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "token",
+              "value": "=_service:{{ $('Crypto').item.json[\"token\"] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "e1edb9b3-b4ce-457d-8b30-f86a4602e93f",
+      "name": "Carica servizi cliente",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1060,
+        360
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrencyRules": []
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2023-12-11T18:22:54.000Z",
+  "versionId": "1a028f03-6421-459d-8041-f23236151dad"
+}
