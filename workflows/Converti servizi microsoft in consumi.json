@@ -22,6 +22,29 @@
           }
         ]
       ]
+    },
+    "Carica servizi cliente": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "Send Email",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
     }
   },
   "createdAt": "2023-12-11T18:14:14.728Z",
@@ -34,14 +57,7 @@
         "rule": {
           "interval": [
             {
-              "field": "months",
-              "triggerAtDayOfMonth": 13,
-              "triggerAtHour": 3
-            },
-            {
-              "field": "months",
-              "triggerAtDayOfMonth": 25,
-              "triggerAtHour": 3
+              "triggerAtHour": 4
             }
           ]
         }
@@ -51,9 +67,11 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.1,
       "position": [
-        580,
-        360
-      ]
+        200,
+        380
+      ],
+      "notesInFlow": true,
+      "notes": "Ogni giorno alle 04.00"
     },
     {
       "parameters": {
@@ -65,8 +83,8 @@
       "type": "n8n-nodes-base.crypto",
       "typeVersion": 1,
       "position": [
-        820,
-        360
+        440,
+        380
       ]
     },
     {
@@ -88,9 +106,55 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        1060,
-        360
+        680,
+        380
       ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.count }}",
+              "operation": "notEqual"
+            }
+          ]
+        }
+      },
+      "id": "fc18e031-02bf-4247-95e1-aa013c7523d8",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        900,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "fromEmail": "gestionale.conversionimicrosoft@nettarget.it",
+        "toEmail": "log@rapportini.net-target.it",
+        "subject": "Convertiti nuovi servizi",
+        "emailFormat": "text",
+        "text": "=Per il mese {{ $json.data }} sono stati convertiti  {{ $json.count }} servizi a consumi.",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "id": "faebacef-4160-4307-9b33-878b78e7f9df",
+      "name": "Send Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        1200,
+        220
+      ],
+      "credentials": {
+        "smtp": {
+          "id": "tfSHueA1qXf8jHgH",
+          "name": "SMTP account"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -102,8 +166,15 @@
       "recurrencyRules": []
     }
   },
-  "tags": [],
+  "tags": [
+    {
+      "createdAt": "2023-11-16T07:56:55.120Z",
+      "updatedAt": "2023-11-16T07:56:55.120Z",
+      "id": "CyrGRy289uAYgKBf",
+      "name": "Gestionale Net Target"
+    }
+  ],
   "triggerCount": 1,
-  "updatedAt": "2023-12-11T18:22:54.000Z",
-  "versionId": "1a028f03-6421-459d-8041-f23236151dad"
+  "updatedAt": "2023-12-12T14:58:38.000Z",
+  "versionId": "fef163c3-cb69-4a96-9250-f3a19c1227cf"
 }
