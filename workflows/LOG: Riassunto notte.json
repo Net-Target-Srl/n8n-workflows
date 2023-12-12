@@ -1,0 +1,171 @@
+{
+  "active": false,
+  "connections": {
+    "Everyday at 08.00": {
+      "main": [
+        [
+          {
+            "node": "Imposta orario ricerca",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Imposta orario ricerca": {
+      "main": [
+        [
+          {
+            "node": "Converti orario",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Converti orario": {
+      "main": [
+        [
+          {
+            "node": "MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL": {
+      "main": [
+        [
+          {
+            "node": "Send Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-12T09:40:31.847Z",
+  "id": "xsByveT7c8mdJfft",
+  "meta": null,
+  "name": "LOG: Riassunto notte",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 8
+            }
+          ]
+        }
+      },
+      "id": "a10ffe9a-b185-407b-b03d-ee3016c778a9",
+      "name": "Everyday at 08.00",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [
+        460,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "action": "calculate",
+        "value": "={{new Date().toISOString()}}",
+        "operation": "subtract",
+        "duration": 12,
+        "timeUnit": "hours",
+        "options": {}
+      },
+      "id": "8604e6a1-0013-4b79-acc7-dc1655c89564",
+      "name": "Imposta orario ricerca",
+      "type": "n8n-nodes-base.dateTime",
+      "typeVersion": 1,
+      "position": [
+        640,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "value": "={{ $json.data }}",
+        "custom": true,
+        "toFormat": "YYYY-MM-DD HH:mm:ss",
+        "options": {}
+      },
+      "id": "56744afd-bb5d-4255-9e04-751a9a0ceaeb",
+      "name": "Converti orario",
+      "type": "n8n-nodes-base.dateTime",
+      "typeVersion": 1,
+      "position": [
+        820,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "=SELECT COUNT(*) AS Notifiche FROM esecuzioni\nINNER JOIN risultati ON esecuzioni.uid = risultati.esecuzione\nWHERE risultati.stato != \"success\" AND esecuzioni.dataora > '{{ $json[\"data\"] }}'"
+      },
+      "id": "28d683c6-ab67-43f9-8491-5e90cdf14010",
+      "name": "MySQL",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        460
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "kEOz86eocM7oTR9V",
+          "name": "MySQL - Log Manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "Crono Net-target <service@rapportini.net-target.it>",
+        "toEmail": "log@rapportini.net-target.it",
+        "subject": "=Riepilogo notturno: <b>{{ $json[\"Notifiche\"] }}</b> rilevanti",
+        "text": "=Durante la notte sono state registrate {{ $json[\"Notifiche\"] }} notifiche rilevanti.\n\nEsecuzione workflow n8n: {{ $node[\"Imposta orario ricerca\"].json[\"timestamp\"] }}",
+        "options": {}
+      },
+      "id": "1615097b-5d28-4533-a11a-a6d59957f1ad",
+      "name": "Send Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2,
+      "position": [
+        1180,
+        460
+      ],
+      "credentials": {
+        "smtp": {
+          "id": "tfSHueA1qXf8jHgH",
+          "name": "SMTP account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Everyday at 08.00": {
+      "recurrencyRules": []
+    }
+  },
+  "tags": [
+    {
+      "createdAt": "2023-12-12T14:50:30.078Z",
+      "updatedAt": "2023-12-12T14:50:30.078Z",
+      "id": "f558fx7DqECbZur0",
+      "name": "Log Manager - Net Target"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2023-12-12T14:50:39.000Z",
+  "versionId": "14fef191-a928-409d-a1aa-1d296cce0499"
+}
