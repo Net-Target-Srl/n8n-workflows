@@ -95,8 +95,15 @@
       "recurrencyRules": []
     }
   },
-  "tags": [],
+  "tags": [
+    {
+      "createdAt": "2023-12-12T14:50:08.884Z",
+      "updatedAt": "2023-12-12T14:50:08.884Z",
+      "id": "AlUz33xPxrEsazpN",
+      "name": "Consulenze Ambientali"
+    }
+  ],
   "triggerCount": 1,
-  "updatedAt": "2023-12-01T13:42:57.000Z",
-  "versionId": "6a3c5ed8-570b-4aea-a3c2-8118c17d442f"
+  "updatedAt": "2023-12-12T14:50:12.000Z",
+  "versionId": "0794243e-1a7f-4cbd-aa0c-77e6fc180ab4"
 }
