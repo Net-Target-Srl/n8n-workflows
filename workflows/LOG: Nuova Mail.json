@@ -1,0 +1,227 @@
+{
+  "active": true,
+  "connections": {
+    "Email Trigger (IMAP)": {
+      "main": [
+        [
+          {
+            "node": "FiltraEmail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "FiltraEmail": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Send Email",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-11T18:29:40.454Z",
+  "id": "6cgHLnbXfxp7WaPf",
+  "meta": null,
+  "name": "LOG: Nuova Mail",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "e5c51116-9d6c-4ffe-ae12-e2a0136ed830",
+      "name": "Email Trigger (IMAP)",
+      "type": "n8n-nodes-base.emailReadImap",
+      "typeVersion": 2,
+      "position": [
+        -360,
+        820
+      ],
+      "credentials": {
+        "imap": {
+          "id": "jJD2eeeduI3k4eCY",
+          "name": "log@rapportini.net-target.it"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const str = $input.item.json.from;\n\n$input.item.json.indirizzo = str.split('<').pop().split('>')[0];\nreturn $input.item;"
+      },
+      "id": "802264b8-d439-4745-9361-57aafd85bb0a",
+      "name": "FiltraEmail",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        -60,
+        820
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://log.net-target.it/api/result.php?apikey=9KDPVCB4REKT3G9SL8V6T7BGVAZRWWT2",
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "indirizzo",
+              "value": "={{ $json.indirizzo }}"
+            },
+            {
+              "name": "oggetto",
+              "value": "={{ $json.subject }}"
+            },
+            {
+              "name": "corpoplain",
+              "value": "={{ $json.textPlain }}"
+            },
+            {
+              "name": "corpohtml",
+              "value": "={{ $json.textHtml }}"
+            },
+            {
+              "name": "dataora",
+              "value": "={{ $json.date }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "6a0b4766-d171-4657-957b-ff92fc58f94e",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        180,
+        820
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{ $input.item.json.tipo }}",
+        "rules": {
+          "rules": [
+            {
+              "value2": "email"
+            },
+            {
+              "value2": "telegram",
+              "output": 1
+            },
+            {
+              "value2": "push",
+              "output": 2
+            }
+          ]
+        }
+      },
+      "id": "e4b05675-7da2-4730-b570-76e7f36c6616",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        420,
+        820
+      ]
+    },
+    {
+      "parameters": {
+        "fromEmail": "Log Manager <net-target.log@nettarget.it>",
+        "toEmail": "={{ $json.utente }}",
+        "subject": "={{ $json.oggetto }}",
+        "text": "={{ $json.messaggio }}",
+        "options": {}
+      },
+      "id": "1dcf9caa-c59a-4150-8895-92f1e338c97e",
+      "name": "Send Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2,
+      "position": [
+        860,
+        680
+      ],
+      "credentials": {
+        "smtp": {
+          "id": "tfSHueA1qXf8jHgH",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.utente }}",
+        "text": "={{ $json.text }}",
+        "additionalFields": {
+          "parse_mode": "HTML"
+        }
+      },
+      "id": "35c8631f-2ca2-4b36-a746-9b8ca78ed021",
+      "name": "Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        860,
+        940
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "FLwX2cDEVGLGY29S",
+          "name": "Net Target BOT"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Email Trigger (IMAP)": {
+      "lastMessageUid": 1310
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2023-12-12T05:00:14.000Z",
+  "versionId": "407501c3-c22d-49d7-b69f-6571e9acd746"
+}
