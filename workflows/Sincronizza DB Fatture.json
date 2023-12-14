@@ -1,0 +1,244 @@
+{
+  "active": true,
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Crypto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Crypto": {
+      "main": [
+        [
+          {
+            "node": "Carica servizi cliente",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Carica servizi cliente": {
+      "main": [
+        [
+          {
+            "node": "Fatture eliminate",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Fatture create",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fatture eliminate": {
+      "main": [
+        [
+          {
+            "node": "Send Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fatture create": {
+      "main": [
+        [
+          {
+            "node": "Send Email1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-13T13:35:06.793Z",
+  "id": "ROS3ZKvX0wMnMtBg",
+  "meta": null,
+  "name": "Sincronizza DB Fatture",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "triggerAtMinute": 15
+            }
+          ]
+        }
+      },
+      "id": "8b65c206-1ad6-41af-9442-582702cb4737",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        280,
+        400
+      ],
+      "notesInFlow": true,
+      "notes": "Ogni ora al minuto 15"
+    },
+    {
+      "parameters": {
+        "value": "={{ \"_service\" + $now.setZone('UTC').toFormat('yyyy-MM-dd') }}",
+        "dataPropertyName": "token"
+      },
+      "id": "23b6eccf-20d8-4b50-88f5-ef03a40a15e8",
+      "name": "Crypto",
+      "type": "n8n-nodes-base.crypto",
+      "typeVersion": 1,
+      "position": [
+        520,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://gestionale.ntcloud.it/fatturazione/aggiornaFatture.php",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "token",
+              "value": "=_service:{{ $('Crypto').item.json[\"token\"] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "511845f3-d1f0-4c99-9019-24fc2e73143d",
+      "name": "Carica servizi cliente",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        760,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.eliminate }}",
+              "operation": "notEqual"
+            }
+          ]
+        }
+      },
+      "id": "0e796089-bbea-48af-ac55-c7d9320fe9e1",
+      "name": "Fatture eliminate",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1260,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "fromEmail": "gestionale@nettarget.it",
+        "toEmail": "log@rapportini.net-target.it",
+        "subject": "Sincronizzazione fatture: eliminate",
+        "emailFormat": "text",
+        "text": "=Sono state eliminate {{ $json.eliminate }} fatture.\n\nhttps://https://nettarget.retool.com/",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "id": "dac0afe2-777a-4753-936a-a6ae98a1fea2",
+      "name": "Send Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        1480,
+        240
+      ],
+      "credentials": {
+        "smtp": {
+          "id": "tfSHueA1qXf8jHgH",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.create }}",
+              "operation": "notEqual"
+            }
+          ]
+        }
+      },
+      "id": "d57420ff-070c-40d7-a91d-af3dec7fb025",
+      "name": "Fatture create",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1260,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "fromEmail": "gestionale@nettarget.it",
+        "toEmail": "log@rapportini.net-target.it",
+        "subject": "Sincronizzazione fatture: create",
+        "emailFormat": "text",
+        "text": "=Sono state eliminate {{ $json.create }} fatture.\n\nhttps://https://nettarget.retool.com/",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "id": "3427c344-eb3a-4070-81eb-44918ba55d34",
+      "name": "Send Email1",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        1480,
+        500
+      ],
+      "credentials": {
+        "smtp": {
+          "id": "tfSHueA1qXf8jHgH",
+          "name": "SMTP account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrencyRules": [
+        9
+      ]
+    }
+  },
+  "tags": [
+    {
+      "createdAt": "2023-11-16T07:56:55.120Z",
+      "updatedAt": "2023-11-16T07:56:55.120Z",
+      "id": "CyrGRy289uAYgKBf",
+      "name": "Gestionale Net Target"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2023-12-13T16:40:50.000Z",
+  "versionId": "5cdfb8b5-b985-46f7-b85c-f45f4d6308d5"
+}
