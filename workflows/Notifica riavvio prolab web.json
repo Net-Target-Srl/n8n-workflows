@@ -1,0 +1,79 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Send Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-14T10:38:40.988Z",
+  "id": "vuBuENn5dkUZbQdb",
+  "meta": null,
+  "name": "Notifica riavvio prolab web",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "42dfb0fe-7841-4e15-8c9a-2b2d2c3f133b",
+        "options": {}
+      },
+      "id": "ce1c01e0-1c38-4be3-ad64-faa336a4e89a",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        840,
+        360
+      ],
+      "webhookId": "42dfb0fe-7841-4e15-8c9a-2b2d2c3f133b"
+    },
+    {
+      "parameters": {
+        "fromEmail": "consamb.prolabweb@nettarget.it",
+        "toEmail": "log@rapportini.net-target.it",
+        "subject": "Riavvio Prolab Web schedulato",
+        "emailFormat": "text",
+        "text": "L'attività di riavvio è stata schedulata",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "id": "aa0ab649-5ab3-423a-8448-be76a9dd3945",
+      "name": "Send Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        1060,
+        360
+      ],
+      "credentials": {
+        "smtp": {
+          "id": "tfSHueA1qXf8jHgH",
+          "name": "SMTP account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2023-12-12T14:50:08.884Z",
+      "updatedAt": "2023-12-12T14:50:08.884Z",
+      "id": "AlUz33xPxrEsazpN",
+      "name": "Consulenze Ambientali"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2023-12-14T10:41:46.000Z",
+  "versionId": "92fbcafb-7392-4019-8529-cb81d6916b5f"
+}
