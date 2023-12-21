@@ -72,8 +72,8 @@
         "rule": {
           "interval": [
             {
-              "field": "hours",
-              "triggerAtMinute": 15
+              "field": "minutes",
+              "minutesInterval": 15
             }
           ]
         }
@@ -87,7 +87,7 @@
         400
       ],
       "notesInFlow": true,
-      "notes": "Ogni ora al minuto 15"
+      "notes": "Ogni 15 minuti"
     },
     {
       "parameters": {
@@ -142,7 +142,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        1260,
+        1480,
         240
       ]
     },
@@ -162,7 +162,7 @@
       "type": "n8n-nodes-base.emailSend",
       "typeVersion": 2.1,
       "position": [
-        1480,
+        1700,
         240
       ],
       "credentials": {
@@ -188,7 +188,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        1260,
+        1480,
         500
       ]
     },
@@ -208,7 +208,7 @@
       "type": "n8n-nodes-base.emailSend",
       "typeVersion": 2.1,
       "position": [
-        1480,
+        1700,
         500
       ],
       "credentials": {
@@ -239,6 +239,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2023-12-13T16:40:50.000Z",
-  "versionId": "5cdfb8b5-b985-46f7-b85c-f45f4d6308d5"
+  "updatedAt": "2023-12-20T16:48:19.000Z",
+  "versionId": "d0ef9e55-2be4-467f-93be-08fcc16983b8"
 }
