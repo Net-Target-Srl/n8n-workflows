@@ -1,0 +1,168 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Crypto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Crypto": {
+      "main": [
+        [
+          {
+            "node": "dati cliente",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GET PDF": {
+      "main": [
+        [
+          {
+            "node": "Microsoft Outlook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "dati cliente": {
+      "main": [
+        [
+          {
+            "node": "GET PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-01-03T17:26:38.880Z",
+  "id": "2pkK2zItNcWUtPeX",
+  "meta": null,
+  "name": "Invia rapportino via email",
+  "nodes": [
+    {
+      "parameters": {
+        "authentication": "basicAuth",
+        "path": "invia-rapportino",
+        "options": {
+          "responseData": "{\"stato\": true}"
+        }
+      },
+      "id": "ec3b5090-1b7f-4b0f-a0f2-1ec06667a6ce",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        140,
+        340
+      ],
+      "webhookId": "116c5528-84ce-46d7-b3a8-146028729ef2",
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "cP3BOtxj7DDr7JMX",
+          "name": "Send Email PHP Gestionale"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "value": "={{ \"_service\" + $now.setZone('UTC').toFormat('yyyy-MM-dd') }}"
+      },
+      "id": "46cb1282-d029-4b2b-bc93-e4a2f7d09aaf",
+      "name": "Crypto",
+      "type": "n8n-nodes-base.crypto",
+      "typeVersion": 1,
+      "position": [
+        380,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "toRecipients": "={{ $('dati cliente').item.json[\"data\"][\"rapportiniMailNotifica\"] }}",
+        "subject": "=Rapportino {{ $('Webhook').item.json[\"query\"][\"idRapportino\"] }}",
+        "bodyContent": "=In allegato il rapportino {{ $('Webhook').item.json[\"query\"][\"idRapportino\"] }}",
+        "additionalFields": {
+          "attachments": {
+            "attachments": [
+              {
+                "binaryPropertyName": "=data"
+              }
+            ]
+          }
+        }
+      },
+      "id": "792958a4-a224-4f5d-8713-c1283b625057",
+      "name": "Microsoft Outlook",
+      "type": "n8n-nodes-base.microsoftOutlook",
+      "typeVersion": 2,
+      "position": [
+        1100,
+        340
+      ],
+      "credentials": {
+        "microsoftOutlookOAuth2Api": {
+          "id": "uQ4EvYpbYU7cTQq2",
+          "name": "gestionale@net-target.it"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://noauth.ntcloud.it/print.php?idRapportino={{ $('Webhook').item.json[\"query\"][\"idRapportino\"] }}&token={{ $('Webhook').item.json[\"query\"][\"token\"] }}",
+        "options": {}
+      },
+      "id": "4a68e13b-9d23-48f9-b591-9a4dd15898af",
+      "name": "GET PDF",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        860,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://gestionale.ntcloud.it/clienti/get.php?id={{ $json.query.idCliente }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "token",
+              "value": "=_service:{{ $json.data }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ad3cc118-912a-47fe-90de-2e9c1817c846",
+      "name": "dati cliente",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        640,
+        340
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-01-03T17:43:34.000Z",
+  "versionId": "891ae03f-10eb-47d8-a019-414d99dfd992"
+}
