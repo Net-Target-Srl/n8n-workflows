@@ -115,7 +115,9 @@
             }
           ]
         },
-        "options": {}
+        "options": {
+          "timeout": 60000
+        }
       },
       "id": "511845f3-d1f0-4c99-9019-24fc2e73143d",
       "name": "Carica servizi cliente",
@@ -239,6 +241,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2023-12-20T16:48:19.000Z",
-  "versionId": "d0ef9e55-2be4-467f-93be-08fcc16983b8"
+  "updatedAt": "2024-01-08T17:26:45.000Z",
+  "versionId": "f9f36116-c987-450c-9184-d7a72e6b5161"
 }
