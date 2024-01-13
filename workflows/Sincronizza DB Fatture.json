@@ -27,12 +27,7 @@
       "main": [
         [
           {
-            "node": "Fatture eliminate",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Fatture create",
+            "node": "IF",
             "type": "main",
             "index": 0
           }
@@ -55,6 +50,29 @@
         [
           {
             "node": "Send Email1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "Fatture eliminate",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Fatture create",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Stop and Error",
             "type": "main",
             "index": 0
           }
@@ -165,7 +183,7 @@
       "typeVersion": 2.1,
       "position": [
         1700,
-        240
+        220
       ],
       "credentials": {
         "smtp": {
@@ -219,6 +237,39 @@
           "name": "SMTP account"
         }
       }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.stato }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "573c25c9-74f3-4c04-b211-ae26847621a2",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        980,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "errorMessage": "Errore sync"
+      },
+      "id": "2f7e6436-767e-4230-8bff-4af749fee59f",
+      "name": "Stop and Error",
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        1380,
+        700
+      ]
     }
   ],
   "pinData": {},
@@ -241,6 +292,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-08T17:26:45.000Z",
-  "versionId": "f9f36116-c987-450c-9184-d7a72e6b5161"
+  "updatedAt": "2024-01-12T13:10:32.000Z",
+  "versionId": "a4ee1891-87ff-4c94-a712-a8d8acd955be"
 }
