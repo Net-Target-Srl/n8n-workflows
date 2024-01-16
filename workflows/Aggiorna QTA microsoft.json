@@ -1,0 +1,170 @@
+{
+  "active": false,
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Crypto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Crypto": {
+      "main": [
+        [
+          {
+            "node": "GET Clienti",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Item Lists": {
+      "main": [
+        [
+          {
+            "node": "Carica servizi cliente",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GET Clienti": {
+      "main": [
+        [
+          {
+            "node": "Item Lists",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-01-15T18:05:58.156Z",
+  "id": "C0MYXZcbMfIqY1F7",
+  "meta": null,
+  "name": "Aggiorna QTA microsoft",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "months",
+              "triggerAtHour": 3
+            }
+          ]
+        }
+      },
+      "id": "5d10d863-3861-45a6-872d-4db39c3ed762",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        320,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "value": "={{ \"_service\" + $now.setZone('UTC').toFormat('yyyy-MM-dd') }}",
+        "dataPropertyName": "token"
+      },
+      "id": "6770a3a5-1e70-4f1e-99ab-06760493b539",
+      "name": "Crypto",
+      "type": "n8n-nodes-base.crypto",
+      "typeVersion": 1,
+      "position": [
+        560,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "data",
+        "options": {}
+      },
+      "id": "960b933c-a137-4797-bb54-118cc973efd1",
+      "name": "Item Lists",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 3,
+      "position": [
+        1020,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://gestionale.ntcloud.it/clienti/list.php?info=idFattureInCloud",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "token",
+              "value": "=_service:{{ $json.token }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "adb3a7ed-a517-4257-b648-4aab67843f6d",
+      "name": "GET Clienti",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        780,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://gestionale.ntcloud.it/servizi/syncqtamic.php?idCliente={{ $json.idFattureInCloud }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "token",
+              "value": "=_service:{{ $('Crypto').item.json[\"token\"] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "6a46917d-c416-44f9-afe6-b27d67ab74d8",
+      "name": "Carica servizi cliente",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1240,
+        360
+      ],
+      "onError": "continueRegularOutput"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrencyRules": []
+    }
+  },
+  "tags": [
+    {
+      "createdAt": "2023-11-16T07:56:55.120Z",
+      "updatedAt": "2023-11-16T07:56:55.120Z",
+      "id": "CyrGRy289uAYgKBf",
+      "name": "Gestionale Net Target"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2024-01-15T18:06:41.000Z",
+  "versionId": "78635b18-4373-4404-b8aa-faee223a3032"
+}
