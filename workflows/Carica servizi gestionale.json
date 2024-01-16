@@ -124,7 +124,7 @@
     },
     {
       "parameters": {
-        "url": "=https://gestionale.ntcloud.it/servizi/caricaServizi.php?idCliente={{ $json[\"idFattureInCloud\"] }}",
+        "url": "=https://gestionale.ntcloud.it/servizi/caricaServizi.php?idCliente={{ $json[\"idFattureInCloud\"] }}&bypass",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -143,7 +143,8 @@
       "position": [
         1240,
         360
-      ]
+      ],
+      "onError": "continueRegularOutput"
     }
   ],
   "pinData": {},
@@ -164,6 +165,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2023-12-01T14:20:16.000Z",
-  "versionId": "89431bea-0081-464c-bddc-faf1c023739d"
+  "updatedAt": "2024-01-15T08:33:26.000Z",
+  "versionId": "aed31599-2085-4dde-a1b7-1cc2cf7d54d6"
 }
