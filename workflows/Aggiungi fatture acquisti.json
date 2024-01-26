@@ -25,7 +25,13 @@
     },
     "IF": {
       "main": [
-        [],
+        [
+          {
+            "node": "Sync Prodotti",
+            "type": "main",
+            "index": 0
+          }
+        ],
         [
           {
             "node": "Stop and Error",
@@ -144,6 +150,31 @@
         760,
         400
       ]
+    },
+    {
+      "parameters": {
+        "url": "=https://gestionale.ntcloud.it/prodotti/syncprodotti.php",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "token",
+              "value": "=_service:{{ $('Crypto').item.json[\"token\"] }}"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 60000
+        }
+      },
+      "id": "6e3480b9-a636-4ea5-a843-d591272f47f6",
+      "name": "Sync Prodotti",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1300,
+        200
+      ]
     }
   ],
   "pinData": {},
@@ -166,6 +197,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-12T15:55:00.000Z",
-  "versionId": "7958a309-8547-4553-ba21-df34b417dee3"
+  "updatedAt": "2024-01-25T18:29:24.000Z",
+  "versionId": "1fdbed6a-6266-4562-856a-1de94b332d8e"
 }
