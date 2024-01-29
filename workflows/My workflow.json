@@ -1,7 +1,7 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
-    "Webhook": {
+    "When clicking \"Execute Workflow\"": {
       "main": [
         [
           {
@@ -13,50 +13,48 @@
       ]
     }
   },
-  "createdAt": "2024-01-19T11:25:53.855Z",
-  "id": "jq9PCOCChvTxXpu3",
+  "createdAt": "2024-01-28T19:21:54.970Z",
+  "id": "SCRXpQ1qzn41RxML",
   "meta": null,
   "name": "My workflow",
   "nodes": [
     {
+      "parameters": {},
+      "id": "aebbcc9b-080b-4ec7-82e9-41543f73ab9d",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        660,
+        280
+      ]
+    },
+    {
       "parameters": {
-        "fromEmail": "Sistema Prenotazioni <servizioprenotazioni@rossotech.net>",
-        "toEmail": "={{ $json[\"query\"][\"to\"] }}",
-        "subject": "=\"{{ $json.query.evento }}\" - Prenotazione confermata",
-        "html": "=<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n<html>\n  <head>\n    <!-- Compiled with Bootstrap Email version: 1.4.0 --><meta http-equiv=\"x-ua-compatible\" content=\"ie=edge\">\n    <meta name=\"x-apple-disable-message-reformatting\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <meta name=\"format-detection\" content=\"telephone=no, date=no, address=no, email=no\">\n    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n    <style type=\"text/css\">\n      body,table,td{font-family:Helvetica,Arial,sans-serif !important}.ExternalClass{width:100%}.ExternalClass,.ExternalClass p,.ExternalClass span,.ExternalClass font,.ExternalClass td,.ExternalClass div{line-height:150%}a{text-decoration:none}*{color:inherit}a[x-apple-data-detectors],u+#body a,#MessageViewBody a{color:inherit;text-decoration:none;font-size:inherit;font-family:inherit;font-weight:inherit;line-height:inherit}img{-ms-interpolation-mode:bicubic}table:not([class^=s-]){font-family:Helvetica,Arial,sans-serif;mso-table-lspace:0pt;mso-table-rspace:0pt;border-spacing:0px;border-collapse:collapse}table:not([class^=s-]) td{border-spacing:0px;border-collapse:collapse}@media screen and (max-width: 600px){.w-full,.w-full>tbody>tr>td{width:100% !important}*[class*=s-lg-]>tbody>tr>td{font-size:0 !important;line-height:0 !important;height:0 !important}.s-2>tbody>tr>td{font-size:8px !important;line-height:8px !important;height:8px !important}.s-3>tbody>tr>td{font-size:12px !important;line-height:12px !important;height:12px !important}.s-5>tbody>tr>td{font-size:20px !important;line-height:20px !important;height:20px !important}.s-10>tbody>tr>td{font-size:40px !important;line-height:40px !important;height:40px !important}}\n    </style>\n    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n    <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n    <link href=\"https://fonts.googleapis.com/css2?family=Libre+Barcode+39+Extended+Text&display=swap\" rel=\"stylesheet\">\n  </head>\n  <body class=\"bg-light\" style=\"outline: 0; width: 100%; min-width: 100%; height: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; font-family: Helvetica, Arial, sans-serif; line-height: 24px; font-weight: normal; font-size: 16px; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; color: #000000; margin: 0; padding: 0; border-width: 0;\" bgcolor=\"#f7fafc\">\n    <table class=\"bg-light body\" valign=\"top\" role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"outline: 0; width: 100%; min-width: 100%; height: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; font-family: Helvetica, Arial, sans-serif; line-height: 24px; font-weight: normal; font-size: 16px; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; color: #000000; margin: 0; padding: 0; border-width: 0;\" bgcolor=\"#f7fafc\">\n      <tbody>\n        <tr>\n          <td valign=\"top\" style=\"line-height: 24px; font-size: 16px; margin: 0;\" align=\"left\" bgcolor=\"#f7fafc\">\n            <table class=\"container\" role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width: 100%;\">\n              <tbody>\n                <tr>\n                  <td align=\"center\" style=\"line-height: 24px; font-size: 16px; margin: 0; padding: 0 16px;\">\n                    <!--[if (gte mso 9)|(IE)]>\n                      <table align=\"center\" role=\"presentation\">\n                        <tbody>\n                          <tr>\n                            <td width=\"600\">\n                    <![endif]-->\n                    <table align=\"center\" role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width: 100%; max-width: 600px; margin: 0 auto;\">\n                      <tbody>\n                        <tr>\n                          <td style=\"line-height: 24px; font-size: 16px; margin: 0;\" align=\"left\">\n                            <table class=\"s-10 w-full\" role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width: 100%;\" width=\"100%\">\n                              <tbody>\n                                <tr>\n                                  <td style=\"line-height: 40px; font-size: 40px; width: 100%; height: 40px; margin: 0;\" align=\"left\" width=\"100%\" height=\"40\">\n                                    &#160;\n                                  </td>\n                                </tr>\n                              </tbody>\n                            </table>\n                            <table class=\"card\" role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-radius: 6px; border-collapse: separate !important; width: 100%; overflow: hidden; border: 1px solid #e2e8f0;\" bgcolor=\"#ffffff\">\n                              <tbody>\n                                <tr>\n                                  <td style=\"line-height: 24px; font-size: 16px; width: 100%; margin: 0;\" align=\"left\" bgcolor=\"#ffffff\">\n                                    <table class=\"card-body\" role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width: 100%;\">\n                                      <tbody>\n                                        <tr>\n                                          <td style=\"line-height: 24px; font-size: 16px; width: 100%; margin: 0; padding: 20px;\" align=\"left\">\n                                            <h1 class=\"h3\" style=\"padding-top: 0; padding-bottom: 0; font-weight: 500; vertical-align: baseline; font-size: 28px; line-height: 33.6px; margin: 0;\" align=\"left\">Conferma prenotazione</h1>\n                                            <table class=\"s-2 w-full\" role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width: 100%;\" width=\"100%\">\n                                              <tbody>\n                                                <tr>\n                                                  <td style=\"line-height: 8px; font-size: 8px; width: 100%; height: 8px; margin: 0;\" align=\"left\" width=\"100%\" height=\"8\">\n                                                    &#160;\n                                                  </td>\n                                                </tr>\n                                              </tbody>\n                                            </table>\n                                            <h5 class=\"text-teal-700\" style=\"color: #13795b; padding-top: 0; padding-bottom: 0; font-weight: 500; vertical-align: baseline; font-size: 20px; line-height: 24px; margin: 0;\" align=\"left\">Codice: <b>{{ $json[\"query\"][\"id\"] }}</b>\n                                            </h5>\n                                            <table class=\"s-5 w-full\" role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width: 100%;\" width=\"100%\">\n                                              <tbody>\n                                                <tr>\n                                                  <td style=\"line-height: 20px; font-size: 20px; width: 100%; height: 20px; margin: 0;\" align=\"left\" width=\"100%\" height=\"20\">\n                                                    &#160;\n                                                  </td>\n                                                </tr>\n                                              </tbody>\n                                            </table>\n                                            <table class=\"hr\" role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width: 100%;\">\n                                              <tbody>\n                                                <tr>\n                                                  <td style=\"line-height: 24px; font-size: 16px; border-top-width: 1px; border-top-color: #e2e8f0; border-top-style: solid; height: 1px; width: 100%; margin: 0;\" align=\"left\">\n                                                  </td>\n                                                </tr>\n                                              </tbody>\n                                            </table>\n                                            <table class=\"s-5 w-full\" role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width: 100%;\" width=\"100%\">\n                                              <tbody>\n                                                <tr>\n                                                  <td style=\"line-height: 20px; font-size: 20px; width: 100%; height: 20px; margin: 0;\" align=\"left\" width=\"100%\" height=\"20\">\n                                                    &#160;\n                                                  </td>\n                                                </tr>\n                                              </tbody>\n                                            </table>\n                                            <div class=\"space-y-3\">\n                                              <p class=\"text-gray-700\" style=\"line-height: 24px; font-size: 16px; color: #4a5568; width: 100%; margin: 0;\" align=\"left\">Ciao <b>{{ $json[\"query\"][\"nome\"] }}</b>,</p>\n                                              <table class=\"s-3 w-full\" role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width: 100%;\" width=\"100%\">\n                                                <tbody>\n                                                  <tr>\n                                                    <td style=\"line-height: 12px; font-size: 12px; width: 100%; height: 12px; margin: 0;\" align=\"left\" width=\"100%\" height=\"12\">\n                                                      &#160;\n                                                    </td>\n                                                  </tr>\n                                                </tbody>\n                                              </table>\n                                              <p class=\"text-gray-700\" style=\"line-height: 24px; font-size: 16px; color: #4a5568; width: 100%; margin: 0;\" align=\"left\">\n                                                La tua prenotazione per l'evento \"<b>{{ $json[\"query\"][\"evento\"] }}</b>\" &#232; stata confermata.<br>\n                                              </p>\n                                              <table class=\"s-3 w-full\" role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width: 100%;\" width=\"100%\">\n                                                <tbody>\n                                                  <tr>\n                                                    <td style=\"line-height: 12px; font-size: 12px; width: 100%; height: 12px; margin: 0;\" align=\"left\" width=\"100%\" height=\"12\">\n                                                      &#160;\n                                                    </td>\n                                                  </tr>\n                                                </tbody>\n                                              </table>\n                                              <p class=\"text-gray-700\" style=\"line-height: 24px; font-size: 16px; color: #4a5568; width: 100%; margin: 0;\" align=\"left\">\n                                                Ti aspettiamo il giorno <b>{{ $json[\"query\"][\"data\"] }}</b> presso <b>{{ $json[\"query\"][\"lugo\"] }}</b>.\n                                              </p>\n                                              <table class=\"s-3 w-full\" role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width: 100%;\" width=\"100%\">\n                                                <tbody>\n                                                  <tr>\n                                                    <td style=\"line-height: 12px; font-size: 12px; width: 100%; height: 12px; margin: 0;\" align=\"left\" width=\"100%\" height=\"12\">\n                                                      &#160;\n                                                    </td>\n                                                  </tr>\n                                                </tbody>\n                                              </table>\n                                              <img src=\"https://barcodesinc.com/generator/image.php?code={{ $json[\"query\"][\"id\"] }}&style=98&type=C128B&width=300&height=60&xres=2&font=6\">\n                                            </div>\n                                          </td>\n                                        </tr>\n                                      </tbody>\n                                    </table>\n                                  </td>\n                                </tr>\n                              </tbody>\n                            </table>\n                            <table class=\"s-10 w-full\" role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width: 100%;\" width=\"100%\">\n                              <tbody>\n                                <tr>\n                                  <td style=\"line-height: 40px; font-size: 40px; width: 100%; height: 40px; margin: 0;\" align=\"left\" width=\"100%\" height=\"40\">\n                                    &#160;\n                                  </td>\n                                </tr>\n                              </tbody>\n                            </table>\n                          </td>\n                        </tr>\n                      </tbody>\n                    </table>\n                    <!--[if (gte mso 9)|(IE)]>\n                    </td>\n                  </tr>\n                </tbody>\n              </table>\n                    <![endif]-->\n                  </td>\n                </tr>\n              </tbody>\n            </table>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </body>\n</html>\n",
+        "fromEmail": "ERP ROSSOTECH <info@erp.rossotech.net>",
+        "toEmail": "mattia.bergamelli@consamb.it",
+        "subject": "Prova",
+        "emailFormat": "text",
+        "text": "Prova",
         "options": {
-          "appendAttribution": false
+          "appendAttribution": false,
+          "allowUnauthorizedCerts": true
         }
       },
-      "id": "681e5442-fb15-4846-92ea-b46159105990",
+      "id": "d584e4fb-6222-4577-b181-348d7957c246",
       "name": "Send Email",
       "type": "n8n-nodes-base.emailSend",
       "typeVersion": 2.1,
       "position": [
-        740,
-        260
+        880,
+        280
       ],
       "credentials": {
         "smtp": {
-          "id": "DiTKVdW6kt14fe1T",
-          "name": "rossotech"
+          "id": "jhZXOGtSuA6WOuhi",
+          "name": "ERP Rossotech"
         }
       }
-    },
-    {
-      "parameters": {
-        "path": "0c34b0fb-2e39-4156-bcd1-a7cb121f0808",
-        "options": {}
-      },
-      "id": "3a437955-ae96-43dc-b08f-d34b76a2494e",
-      "name": "Webhook",
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 1,
-      "position": [
-        480,
-        260
-      ],
-      "webhookId": "0c34b0fb-2e39-4156-bcd1-a7cb121f0808"
     }
   ],
   "pinData": {},
@@ -65,7 +63,7 @@
   },
   "staticData": null,
   "tags": [],
-  "triggerCount": 1,
-  "updatedAt": "2024-01-22T08:45:24.000Z",
-  "versionId": "e11d522d-af49-47d7-97a5-62d60601b374"
+  "triggerCount": 0,
+  "updatedAt": "2024-01-28T20:29:31.000Z",
+  "versionId": "7ce2a0bc-fc8d-4a86-9300-b92f3678483b"
 }
