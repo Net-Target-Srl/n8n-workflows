@@ -1,0 +1,85 @@
+{
+  "active": true,
+  "connections": {
+    "n8n Form Trigger": {
+      "main": [
+        [
+          {
+            "node": "Send Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-01-28T20:46:46.256Z",
+  "id": "63lhvXEqftlDja4a",
+  "meta": null,
+  "name": "My workflow 2",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "ERP rossotech - Password dimenticata",
+        "formDescription": "Un nostro operatore si metterà in contatto il prima possibile",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Indirizzo email",
+              "requiredField": true
+            }
+          ]
+        },
+        "responseMode": "lastNode",
+        "options": {
+          "formSubmittedText": "La tua richiesta è stata inoltrata"
+        }
+      },
+      "id": "8471bf36-ead7-4577-91ef-1a1e9f33ffbe",
+      "name": "n8n Form Trigger",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 1,
+      "position": [
+        440,
+        260
+      ],
+      "webhookId": "35f6f899-89d5-46de-9b20-83c8d88c89d0"
+    },
+    {
+      "parameters": {
+        "fromEmail": "Gestione Utenti <utenti@erp.rossotech.net>",
+        "toEmail": "=info@rossotech.net",
+        "subject": "Richiesto ripristino password",
+        "emailFormat": "text",
+        "text": "={{ $json['Indirizzo email'] }}",
+        "options": {
+          "appendAttribution": false,
+          "allowUnauthorizedCerts": true
+        }
+      },
+      "id": "1a71a94a-1645-43f0-a1fb-a9e7f66d7ff3",
+      "name": "Send Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        660,
+        260
+      ],
+      "credentials": {
+        "smtp": {
+          "id": "jhZXOGtSuA6WOuhi",
+          "name": "ERP Rossotech"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 2,
+  "updatedAt": "2024-01-28T20:51:19.000Z",
+  "versionId": "1634e257-6aaf-4bf5-b3e4-2dd2d74f984b"
+}
