@@ -30,6 +30,11 @@
             "node": "Carica servizi cliente",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -39,6 +44,17 @@
         [
           {
             "node": "Item Lists",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Ricarica servizi",
             "type": "main",
             "index": 0
           }
@@ -124,7 +140,7 @@
     },
     {
       "parameters": {
-        "url": "=https://gestionale.ntcloud.it/servizi/caricaServizi.php?idCliente={{ $json[\"idFattureInCloud\"] }}&bypass&nomeCliente={{ $json.nomeFattureInCloud }}",
+        "url": "=https://gestionale.ntcloud.it/servizi/caricaServizi.php?idCliente={{ $json[\"idFattureInCloud\"] }}&nomeCliente={{ $json.nomeFattureInCloud }}",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -141,8 +157,47 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        1240,
-        360
+        1560,
+        200
+      ],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "amount": 5,
+        "unit": "minutes"
+      },
+      "id": "2ec7a2a8-0f28-4bf2-8546-ee14e802d2f9",
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        1560,
+        480
+      ],
+      "webhookId": "bc846cff-4848-4a21-ac3d-8157d18fd5e2"
+    },
+    {
+      "parameters": {
+        "url": "=https://gestionale.ntcloud.it/servizi/caricaServizi.php?idCliente={{ $json[\"idFattureInCloud\"] }}&bypass&nomeCliente={{ $json.nomeFattureInCloud }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "token",
+              "value": "=_service:{{ $('Crypto').item.json[\"token\"] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c9d0af5c-bfb5-44ee-84d9-4186a1a577c1",
+      "name": "Ricarica servizi",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2000,
+        380
       ],
       "onError": "continueRegularOutput"
     }
@@ -165,6 +220,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-18T18:38:43.000Z",
-  "versionId": "7cf60ad8-1427-454a-8157-c4481d510f75"
+  "updatedAt": "2024-02-01T11:45:30.000Z",
+  "versionId": "5489ad5a-8219-4588-98e3-df81686aad29"
 }
