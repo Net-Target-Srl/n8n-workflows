@@ -1,0 +1,18 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2024-02-28T14:46:22.079Z",
+  "id": "mKEt6o9d0rPy4dQp",
+  "meta": null,
+  "name": "ERP rossotech n",
+  "nodes": [],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-02-28T14:46:22.079Z",
+  "versionId": "4983e34c-47c4-4cdf-9d29-0ebefa98170c"
+}
