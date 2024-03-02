@@ -1,0 +1,42 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2024-03-01T09:40:09.535Z",
+  "id": "cHzEmlTIRjZLiw3Q",
+  "meta": null,
+  "name": "My workflow 4",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Iscrizione Squadre 2024",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Nome della Squadra",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "42729826-3681-401b-9910-5479b32d1622",
+      "name": "n8n Form Trigger",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 1,
+      "position": [
+        920,
+        380
+      ],
+      "webhookId": "0493f618-8606-40ce-8e4a-76df143c5101"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-03-01T09:40:09.535Z",
+  "versionId": "6f242184-3235-4fa9-a726-c5f40704ea85"
+}
