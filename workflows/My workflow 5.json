@@ -1,0 +1,47 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2024-03-06T08:06:38.219Z",
+  "id": "zGS2zBRn1ikeyVYK",
+  "meta": null,
+  "name": "My workflow 5",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Nuovo indirizzo privacy",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "email",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "nome",
+              "requiredField": true
+            }
+          ]
+        },
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "id": "108f41e7-a0d5-416d-85bf-1a7219cb88ed",
+      "name": "n8n Form Trigger",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 1,
+      "position": [
+        920,
+        420
+      ],
+      "webhookId": "f3ed426f-862c-4745-a20f-f0580481746b"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-03-06T08:06:38.219Z",
+  "versionId": "f76ded3a-7b23-4b2e-925c-59729470dfc6"
+}
