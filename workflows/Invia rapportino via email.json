@@ -130,7 +130,9 @@
             }
           ]
         },
-        "options": {}
+        "options": {
+          "timeout": 40000
+        }
       },
       "id": "ad3cc118-912a-47fe-90de-2e9c1817c846",
       "name": "dati cliente",
@@ -234,6 +236,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2024-03-06T17:03:00.000Z",
-  "versionId": "036a3859-53b8-4245-a74e-8b80b2b6ab1c"
+  "updatedAt": "2024-03-08T17:41:00.000Z",
+  "versionId": "f26ccd24-af40-4de5-98b9-715b2eccc433"
 }
