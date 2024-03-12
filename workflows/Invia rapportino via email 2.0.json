@@ -1,0 +1,396 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Crypto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Crypto": {
+      "main": [
+        [
+          {
+            "node": "rappdata",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "rappdata": {
+      "main": [
+        [
+          {
+            "node": "email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "email": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "Invio a cliente",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "IF1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF1": {
+      "main": [
+        [
+          {
+            "node": "Invio a cliente",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Invio personalizzato",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Invio a cliente": {
+      "main": [
+        [
+          {
+            "node": "IF2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Invio personalizzato": {
+      "main": [
+        [
+          {
+            "node": "IF2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF2": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "fine errore",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "fine ok",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-03-11T17:10:25.398Z",
+  "id": "eBxNlM0aLfjB7XbH",
+  "meta": null,
+  "name": "Invia rapportino via email 2.0",
+  "nodes": [
+    {
+      "parameters": {
+        "authentication": "basicAuth",
+        "path": "inviarapportino",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "4a2e2d49-9e60-44c0-8d14-fe2758e35ba2",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        500,
+        340
+      ],
+      "webhookId": "44949e57-c562-4d9f-9c2b-71c63c1b714f",
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "cP3BOtxj7DDr7JMX",
+          "name": "Send Email PHP Gestionale"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "value": "={{ \"_service\" + $now.setZone('UTC').toFormat('yyyy-MM-dd') }}"
+      },
+      "id": "8efa1482-644e-4224-93c8-2b657d4d5b81",
+      "name": "Crypto",
+      "type": "n8n-nodes-base.crypto",
+      "typeVersion": 1,
+      "position": [
+        700,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://gestionale.ntcloud.it/rapportini/email.php?idRapportino={{ $('Webhook').item.json[\"query\"][\"idRapportino\"] }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "token",
+              "value": "=_service:{{ $('Crypto').item.json[\"data\"] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "319f15ff-e1f8-4447-9227-f1992137a64b",
+      "name": "email",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1100,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://gestionale.ntcloud.it/rapportini/emaildata.php?idRapportino={{ $('Webhook').item.json[\"query\"][\"idRapportino\"] }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "token",
+              "value": "=_service:{{ $json.data }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "1bd89eab-17e1-47f2-bbca-6806d946da23",
+      "name": "rappdata",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        900,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $('Webhook').item.json.query.email }}",
+              "operation": "isEmpty"
+            }
+          ]
+        }
+      },
+      "id": "50a2ad3b-815a-4a77-9297-d4b1755caf66",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1340,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $('rappdata').item.json[0][\"firma\"] }}",
+              "value2": "NULLA"
+            }
+          ]
+        }
+      },
+      "id": "4ad0ebcd-9d14-42b9-8e52-5e8974e9bcc3",
+      "name": "IF1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1600,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "toRecipients": "={{ $('rappdata').item.json[\"mailCliente\"] }}",
+        "subject": "={{ $('rappdata').item.json[\"oggetto\"] }}",
+        "bodyContent": "={{ $('email').item.json[\"data\"] }}",
+        "additionalFields": {
+          "bccRecipients": "={{ $('rappdata').item.json[\"tecnicoUtente\"] }}",
+          "bodyContentType": "html"
+        }
+      },
+      "id": "dad0268d-b464-4985-9d0b-3001d154a66a",
+      "name": "Invio a cliente",
+      "type": "n8n-nodes-base.microsoftOutlook",
+      "typeVersion": 2,
+      "position": [
+        1860,
+        220
+      ],
+      "credentials": {
+        "microsoftOutlookOAuth2Api": {
+          "id": "uQ4EvYpbYU7cTQq2",
+          "name": "gestionale@net-target.it"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "toRecipients": "={{ $('Webhook').item.json[\"query\"][\"email\"] }}",
+        "subject": "={{ $('rappdata').item.json[\"oggetto\"] }}",
+        "bodyContent": "={{ $('email').item.json[\"data\"] }}",
+        "additionalFields": {
+          "bccRecipients": "={{ $('rappdata').item.json[\"tecnicoUtente\"] }}",
+          "bodyContentType": "html"
+        }
+      },
+      "id": "298f9426-82ad-44ef-8d6a-544c6cc8bd4a",
+      "name": "Invio personalizzato",
+      "type": "n8n-nodes-base.microsoftOutlook",
+      "typeVersion": 2,
+      "position": [
+        1860,
+        520
+      ],
+      "credentials": {
+        "microsoftOutlookOAuth2Api": {
+          "id": "uQ4EvYpbYU7cTQq2",
+          "name": "gestionale@net-target.it"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json[\"success\"] }}",
+              "operation": "notEqual",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "afb347ee-6497-49d7-884d-31b4b6cdc88d",
+      "name": "IF2",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2180,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "746570222",
+        "text": "Errore invio email NTG",
+        "additionalFields": {}
+      },
+      "id": "ef9f561e-186b-4534-abdc-827f851fb8c7",
+      "name": "Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        2560,
+        340
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "FLwX2cDEVGLGY29S",
+          "name": "Net Target BOT"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\"stato\": false}",
+        "options": {}
+      },
+      "id": "50446a7d-9268-4481-9904-9698a246df4b",
+      "name": "fine errore",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        2440,
+        140
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\"stato\": true}",
+        "options": {}
+      },
+      "id": "13422279-a3be-43bd-bb18-57651bc2ca33",
+      "name": "fine ok",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        2440,
+        580
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2023-11-16T07:56:55.120Z",
+      "updatedAt": "2023-11-16T07:56:55.120Z",
+      "id": "CyrGRy289uAYgKBf",
+      "name": "Gestionale Net Target"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2024-03-11T18:15:47.000Z",
+  "versionId": "fc44046b-19d7-4263-b09a-e99448775390"
+}
