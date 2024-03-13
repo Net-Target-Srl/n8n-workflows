@@ -27,7 +27,76 @@
       "main": [
         [
           {
+            "node": "Verifica Allegato",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Verifica Allegato": {
+      "main": [
+        [
+          {
+            "node": "email1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
             "node": "email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Indirizzo differente": {
+      "main": [
+        [
+          {
+            "node": "Scarica Allegato",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Scarica Allegato1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "email1": {
+      "main": [
+        [
+          {
+            "node": "Indirizzo differente",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Scarica Allegato": {
+      "main": [
+        [
+          {
+            "node": "Invio a Email differente + Allegato",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Scarica Allegato1": {
+      "main": [
+        [
+          {
+            "node": "Invio a Email + Allegato",
             "type": "main",
             "index": 0
           }
@@ -38,7 +107,40 @@
       "main": [
         [
           {
+            "node": "Invio a Email + Allegato1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Invio a Email differente + Allegato": {
+      "main": [
+        [
+          {
             "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Invio a Email + Allegato": {
+      "main": [
+        [
+          {
+            "node": "IF1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Invio a Email + Allegato1": {
+      "main": [
+        [
+          {
+            "node": "IF2",
             "type": "main",
             "index": 0
           }
@@ -49,14 +151,14 @@
       "main": [
         [
           {
-            "node": "Invio a cliente",
+            "node": "TRUE",
             "type": "main",
             "index": 0
           }
         ],
         [
           {
-            "node": "IF1",
+            "node": "FALSE",
             "type": "main",
             "index": 0
           }
@@ -67,36 +169,14 @@
       "main": [
         [
           {
-            "node": "Invio a cliente",
+            "node": "TRUE",
             "type": "main",
             "index": 0
           }
         ],
         [
           {
-            "node": "Invio personalizzato",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Invio a cliente": {
-      "main": [
-        [
-          {
-            "node": "IF2",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Invio personalizzato": {
-      "main": [
-        [
-          {
-            "node": "IF2",
+            "node": "FALSE",
             "type": "main",
             "index": 0
           }
@@ -107,19 +187,14 @@
       "main": [
         [
           {
-            "node": "Telegram",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "fine errore",
+            "node": "TRUE",
             "type": "main",
             "index": 0
           }
         ],
         [
           {
-            "node": "fine ok",
+            "node": "FALSE",
             "type": "main",
             "index": 0
           }
@@ -144,7 +219,7 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 1,
       "position": [
-        500,
+        -80,
         340
       ],
       "webhookId": "44949e57-c562-4d9f-9c2b-71c63c1b714f",
@@ -164,30 +239,7 @@
       "type": "n8n-nodes-base.crypto",
       "typeVersion": 1,
       "position": [
-        700,
-        340
-      ]
-    },
-    {
-      "parameters": {
-        "url": "=https://gestionale.ntcloud.it/rapportini/email.php?idRapportino={{ $('Webhook').item.json[\"query\"][\"idRapportino\"] }}",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "token",
-              "value": "=_service:{{ $('Crypto').item.json[\"data\"] }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "319f15ff-e1f8-4447-9227-f1992137a64b",
-      "name": "email",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.1,
-      "position": [
-        1100,
+        120,
         340
       ]
     },
@@ -210,7 +262,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        900,
+        320,
         340
       ]
     },
@@ -219,19 +271,92 @@
         "conditions": {
           "string": [
             {
-              "value1": "={{ $('Webhook').item.json.query.email }}",
-              "operation": "isEmpty"
+              "value1": "={{ $json.pdf }}",
+              "operation": "isNotEmpty"
             }
           ]
         }
       },
-      "id": "50a2ad3b-815a-4a77-9297-d4b1755caf66",
-      "name": "IF",
+      "id": "aad9ad80-1e9e-4c00-bb4a-eccac6f73303",
+      "name": "Verifica Allegato",
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        1340,
+        560,
         340
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{ $('rappdata').item.json[\"pdf\"] }}{{ $('Webhook').item.json[\"query\"][\"user\"] }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "token",
+              "value": "=_service:{{ $('Crypto').item.json[\"data\"] }}"
+            }
+          ]
+        },
+        "options": {
+          "response": {}
+        }
+      },
+      "id": "91d91700-2662-4e32-9fd5-35c9acc8601f",
+      "name": "Scarica Allegato",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1680,
+        -160
+      ],
+      "alwaysOutputData": false,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "url": "=https://gestionale.ntcloud.it/rapportini/email.php?idRapportino={{ $('Webhook').item.json[\"query\"][\"idRapportino\"] }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "token",
+              "value": "=_service:{{ $('Crypto').item.json[\"data\"] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "99f7cc45-48ec-41bb-9b66-1c2bb75429ec",
+      "name": "email",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1680,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://gestionale.ntcloud.it/rapportini/email.php?idRapportino={{ $('Webhook').item.json[\"query\"][\"idRapportino\"] }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "token",
+              "value": "=_service:{{ $('Crypto').item.json[\"data\"] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ef79b12b-d4e2-4fad-97eb-4f1881c730cd",
+      "name": "email1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1140,
+        20
       ]
     },
     {
@@ -239,20 +364,111 @@
         "conditions": {
           "string": [
             {
-              "value1": "={{ $('rappdata').item.json[0][\"firma\"] }}",
-              "value2": "NULLA"
+              "value1": "={{ $('Webhook').item.json[\"query\"][\"email\"] }}",
+              "operation": "isNotEmpty"
             }
           ]
         }
       },
-      "id": "4ad0ebcd-9d14-42b9-8e52-5e8974e9bcc3",
-      "name": "IF1",
+      "id": "3fd95650-df3b-40f6-abde-65317db462b5",
+      "name": "Indirizzo differente",
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        1600,
-        500
+        1380,
+        20
       ]
+    },
+    {
+      "parameters": {
+        "url": "={{ $('rappdata').item.json[\"pdf\"] }}{{ $('Webhook').item.json[\"query\"][\"user\"] }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "token",
+              "value": "=_service:{{ $('Crypto').item.json[\"data\"] }}"
+            }
+          ]
+        },
+        "options": {
+          "response": {}
+        }
+      },
+      "id": "14ac124d-fd8e-4faf-b3da-032b52cbfc8a",
+      "name": "Scarica Allegato1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1680,
+        80
+      ],
+      "alwaysOutputData": false,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "toRecipients": "={{ $('Webhook').item.json[\"query\"][\"email\"] }}",
+        "subject": "={{ $('rappdata').item.json[\"oggetto\"] }}",
+        "bodyContent": "={{ $('email1').item.json[\"data\"] }}",
+        "additionalFields": {
+          "attachments": {
+            "attachments": [
+              {
+                "binaryPropertyName": "data"
+              }
+            ]
+          },
+          "bccRecipients": "={{ $('rappdata').item.json[\"tecnicoUtente\"] }}",
+          "bodyContentType": "html"
+        }
+      },
+      "id": "21eddf86-f97d-458b-a602-8f7b78647a7f",
+      "name": "Invio a Email differente + Allegato",
+      "type": "n8n-nodes-base.microsoftOutlook",
+      "typeVersion": 2,
+      "position": [
+        1920,
+        -160
+      ],
+      "credentials": {
+        "microsoftOutlookOAuth2Api": {
+          "id": "uQ4EvYpbYU7cTQq2",
+          "name": "gestionale@net-target.it"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "toRecipients": "={{ $('rappdata').item.json[\"mailCliente\"] }}",
+        "subject": "={{ $('rappdata').item.json[\"oggetto\"] }}",
+        "bodyContent": "={{ $('email1').item.json[\"data\"] }}",
+        "additionalFields": {
+          "attachments": {
+            "attachments": [
+              {
+                "binaryPropertyName": "data"
+              }
+            ]
+          },
+          "bccRecipients": "={{ $('rappdata').item.json[\"tecnicoUtente\"] }}",
+          "bodyContentType": "html"
+        }
+      },
+      "id": "0b5c4860-17ce-4a30-ba02-7aa0ca04f0e2",
+      "name": "Invio a Email + Allegato",
+      "type": "n8n-nodes-base.microsoftOutlook",
+      "typeVersion": 2,
+      "position": [
+        1920,
+        80
+      ],
+      "credentials": {
+        "microsoftOutlookOAuth2Api": {
+          "id": "uQ4EvYpbYU7cTQq2",
+          "name": "gestionale@net-target.it"
+        }
+      }
     },
     {
       "parameters": {
@@ -264,38 +480,13 @@
           "bodyContentType": "html"
         }
       },
-      "id": "dad0268d-b464-4985-9d0b-3001d154a66a",
-      "name": "Invio a cliente",
+      "id": "7e6f8cae-bd06-4c05-9945-4777cedd15a9",
+      "name": "Invio a Email + Allegato1",
       "type": "n8n-nodes-base.microsoftOutlook",
       "typeVersion": 2,
       "position": [
-        1860,
-        220
-      ],
-      "credentials": {
-        "microsoftOutlookOAuth2Api": {
-          "id": "uQ4EvYpbYU7cTQq2",
-          "name": "gestionale@net-target.it"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "toRecipients": "={{ $('Webhook').item.json[\"query\"][\"email\"] }}",
-        "subject": "={{ $('rappdata').item.json[\"oggetto\"] }}",
-        "bodyContent": "={{ $('email').item.json[\"data\"] }}",
-        "additionalFields": {
-          "bccRecipients": "={{ $('rappdata').item.json[\"tecnicoUtente\"] }}",
-          "bodyContentType": "html"
-        }
-      },
-      "id": "298f9426-82ad-44ef-8d6a-544c6cc8bd4a",
-      "name": "Invio personalizzato",
-      "type": "n8n-nodes-base.microsoftOutlook",
-      "typeVersion": 2,
-      "position": [
-        1860,
-        520
+        1920,
+        400
       ],
       "credentials": {
         "microsoftOutlookOAuth2Api": {
@@ -309,71 +500,93 @@
         "conditions": {
           "boolean": [
             {
-              "value1": "={{ $json[\"success\"] }}",
-              "operation": "notEqual",
+              "value1": "={{ $json.success }}",
               "value2": true
             }
           ]
         }
       },
-      "id": "afb347ee-6497-49d7-884d-31b4b6cdc88d",
-      "name": "IF2",
+      "id": "499d1e6e-d061-4bb8-9d8d-56002c367326",
+      "name": "IF",
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        2180,
-        360
+        2160,
+        -160
       ]
     },
     {
       "parameters": {
-        "chatId": "746570222",
-        "text": "Errore invio email NTG",
-        "additionalFields": {}
-      },
-      "id": "ef9f561e-186b-4534-abdc-827f851fb8c7",
-      "name": "Telegram",
-      "type": "n8n-nodes-base.telegram",
-      "typeVersion": 1.1,
-      "position": [
-        2560,
-        340
-      ],
-      "credentials": {
-        "telegramApi": {
-          "id": "FLwX2cDEVGLGY29S",
-          "name": "Net Target BOT"
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.success }}",
+              "value2": true
+            }
+          ]
         }
-      }
+      },
+      "id": "ea32cbd7-75f4-4b46-946c-d5586e7d2413",
+      "name": "IF1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2160,
+        80
+      ]
     },
     {
       "parameters": {
-        "respondWith": "json",
-        "responseBody": "{\"stato\": false}",
-        "options": {}
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.success }}",
+              "value2": true
+            }
+          ]
+        }
       },
-      "id": "50446a7d-9268-4481-9904-9698a246df4b",
-      "name": "fine errore",
-      "type": "n8n-nodes-base.respondToWebhook",
+      "id": "c925b226-9a50-463e-af6c-b7d44e26b813",
+      "name": "IF2",
+      "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        2440,
-        140
+        2160,
+        400
       ]
     },
     {
       "parameters": {
         "respondWith": "json",
         "responseBody": "{\"stato\": true}",
-        "options": {}
+        "options": {
+          "responseCode": 200
+        }
       },
-      "id": "13422279-a3be-43bd-bb18-57651bc2ca33",
-      "name": "fine ok",
+      "id": "c744e63d-d66c-474b-8127-52cdfd8ef558",
+      "name": "TRUE",
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1,
       "position": [
-        2440,
-        580
+        2700,
+        -40
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\"stato\": false}",
+        "options": {
+          "responseCode": 422
+        }
+      },
+      "id": "d1fede20-2867-429b-aa05-4e838e9f0521",
+      "name": "FALSE",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        2700,
+        260
       ]
     }
   ],
@@ -391,6 +604,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-03-11T18:15:47.000Z",
-  "versionId": "fc44046b-19d7-4263-b09a-e99448775390"
+  "updatedAt": "2024-03-12T16:18:35.000Z",
+  "versionId": "084ce6f5-d9f5-4903-afbe-99895ea67941"
 }
