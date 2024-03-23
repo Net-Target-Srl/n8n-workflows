@@ -1,0 +1,65 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-03-22T11:18:15.657Z",
+  "id": "WfADroBOMQ2qox4J",
+  "meta": null,
+  "name": "My workflow 6",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "61260c94-6342-40ec-99fa-ffd5c0e2fffd",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        820,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "-4162133899",
+        "text": "Prova dal bot",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "ba520006-fc36-44a6-a6f6-0144a6d02373",
+      "name": "Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        1040,
+        340
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "5RlfBK9g0JNsqkAU",
+          "name": "Bot RMM"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-03-22T11:18:27.000Z",
+  "versionId": "81c13e33-3067-4220-b83f-295e36cd5bc1"
+}
