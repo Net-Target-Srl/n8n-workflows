@@ -1,0 +1,67 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Microsoft Outlook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-04-04T14:24:23.019Z",
+  "id": "kWHhlOuKiiO7uThN",
+  "meta": null,
+  "name": "Invia mail se suona citofono comune",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "c4cd8798-85e8-4c37-a2dc-c6f271129b6a",
+        "options": {}
+      },
+      "id": "5e7e8d46-865f-4b6d-82ca-5f61d1cba6bd",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        580,
+        240
+      ],
+      "webhookId": "c4cd8798-85e8-4c37-a2dc-c6f271129b6a"
+    },
+    {
+      "parameters": {
+        "toRecipients": "info@ntcloud.it",
+        "subject": "Il campanello della casa della musica sta suonando",
+        "additionalFields": {}
+      },
+      "id": "693e672a-1d38-449d-b1e2-e4ced9dcf0fe",
+      "name": "Microsoft Outlook",
+      "type": "n8n-nodes-base.microsoftOutlook",
+      "typeVersion": 2,
+      "position": [
+        820,
+        240
+      ],
+      "credentials": {
+        "microsoftOutlookOAuth2Api": {
+          "id": "uQ4EvYpbYU7cTQq2",
+          "name": "gestionale@net-target.it"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-04-04T14:25:51.000Z",
+  "versionId": "bd18eaba-972b-45f8-8578-ed542522cd9e"
+}
