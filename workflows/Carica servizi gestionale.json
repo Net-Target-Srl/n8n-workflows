@@ -72,7 +72,6 @@
         "rule": {
           "interval": [
             {
-              "field": "months",
               "triggerAtHour": 3
             }
           ]
@@ -220,6 +219,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-01T11:45:30.000Z",
-  "versionId": "5489ad5a-8219-4588-98e3-df81686aad29"
+  "updatedAt": "2024-04-08T08:25:50.000Z",
+  "versionId": "834447de-49cb-48ca-b8fe-c9f7e692a123"
 }
