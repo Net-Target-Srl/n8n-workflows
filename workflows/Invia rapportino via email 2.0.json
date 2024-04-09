@@ -200,6 +200,17 @@
           }
         ]
       ]
+    },
+    "TRUE": {
+      "main": [
+        [
+          {
+            "node": "LOG invio email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2024-03-11T17:10:25.398Z",
@@ -588,6 +599,29 @@
         2700,
         260
       ]
+    },
+    {
+      "parameters": {
+        "url": "=https://gestionale.ntcloud.it/rapportini/logemail.php?idRapportino={{ $('Webhook').item.json[\"query\"][\"idRapportino\"] }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "token",
+              "value": "=_service:{{ $('Crypto').item.json[\"data\"] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "71595904-445c-4ffb-addb-835c253a5cad",
+      "name": "LOG invio email",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        3080,
+        -220
+      ]
     }
   ],
   "pinData": {},
@@ -604,6 +638,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-03-12T16:18:35.000Z",
-  "versionId": "084ce6f5-d9f5-4903-afbe-99895ea67941"
+  "updatedAt": "2024-04-08T09:08:50.000Z",
+  "versionId": "d319dc8f-2813-44ed-b9e5-284a9739b701"
 }
