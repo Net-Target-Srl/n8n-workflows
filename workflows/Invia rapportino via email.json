@@ -1,5 +1,5 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
     "Webhook": {
       "main": [
@@ -231,11 +231,15 @@
   ],
   "pinData": {},
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "saveExecutionProgress": true,
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "timezone": "Europe/Rome"
   },
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2024-03-08T17:41:00.000Z",
-  "versionId": "f26ccd24-af40-4de5-98b9-715b2eccc433"
+  "updatedAt": "2024-04-08T08:50:16.000Z",
+  "versionId": "cc92dd0b-607f-456d-9014-187eb25adc27"
 }
