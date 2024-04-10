@@ -1,0 +1,101 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "LOG_API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "LOG_API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-04-09T14:55:23.947Z",
+  "id": "1RECMyjFpfC6QFoD",
+  "meta": null,
+  "name": "LogManager - Main",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 1
+            }
+          ]
+        }
+      },
+      "id": "1f6096db-033f-4fd7-845b-d387f2a4f446",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        620,
+        460
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "c87460ff-0981-413f-aa44-6bf4b6a9c397",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        620,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://log.ntcloud.it/vbeta/",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "DvC5JRy1tXEM6J5ptNp0"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 100000
+        }
+      },
+      "id": "e169d134-3a68-4cd2-99e2-4e723c4be27d",
+      "name": "LOG_API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1040,
+        380
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "maxTries": 2
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-04-09T15:01:01.000Z",
+  "versionId": "ddfc16c6-91ee-4037-b6f6-884634457fc9"
+}
