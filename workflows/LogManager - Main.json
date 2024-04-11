@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "When clicking \"Execute Workflow\"": {
       "main": [
@@ -17,6 +17,17 @@
         [
           {
             "node": "LOG_API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LOG_API": {
+      "main": [
+        [
+          {
+            "node": "NOTIFICHE",
             "type": "main",
             "index": 0
           }
@@ -68,7 +79,7 @@
           "parameters": [
             {
               "name": "apikey",
-              "value": "DvC5JRy1tXEM6J5ptNp0"
+              "value": "N8N_DvC5JRy1tXEM6J5ptNp0"
             }
           ]
         },
@@ -87,15 +98,47 @@
       "retryOnFail": true,
       "waitBetweenTries": 5000,
       "maxTries": 2
+    },
+    {
+      "parameters": {
+        "url": "https://log.ntcloud.it/notifica-vbeta/",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "N8N_DvC5JRy1tXEM6J5ptNp0"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 15000
+        }
+      },
+      "id": "2c24b9c8-d70b-436d-8b0f-719355d6b852",
+      "name": "NOTIFICHE",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1260,
+        380
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "maxTries": 2
     }
   ],
   "pinData": {},
   "settings": {
     "executionOrder": "v1"
   },
-  "staticData": null,
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrencyRules": []
+    }
+  },
   "tags": [],
-  "triggerCount": 0,
-  "updatedAt": "2024-04-09T15:01:01.000Z",
-  "versionId": "ddfc16c6-91ee-4037-b6f6-884634457fc9"
+  "triggerCount": 1,
+  "updatedAt": "2024-04-10T15:40:44.000Z",
+  "versionId": "2c2d75f6-9e59-4695-9c47-3e7d517c6fc3"
 }
