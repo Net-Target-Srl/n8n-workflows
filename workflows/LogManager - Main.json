@@ -46,7 +46,7 @@
           "interval": [
             {
               "field": "minutes",
-              "minutesInterval": 1
+              "minutesInterval": 2
             }
           ]
         }
@@ -112,7 +112,7 @@
           ]
         },
         "options": {
-          "timeout": 15000
+          "timeout": 100000
         }
       },
       "id": "2c24b9c8-d70b-436d-8b0f-719355d6b852",
@@ -139,6 +139,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2024-04-10T15:40:44.000Z",
-  "versionId": "2c2d75f6-9e59-4695-9c47-3e7d517c6fc3"
+  "updatedAt": "2024-04-11T08:41:20.000Z",
+  "versionId": "c0a0b960-2674-4509-9f93-cd6a0582cc76"
 }
