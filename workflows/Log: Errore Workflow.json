@@ -1,0 +1,66 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-04-19T12:56:20.493Z",
+  "id": "xppZiaJyrlhedZYA",
+  "meta": null,
+  "name": "Log: Errore Workflow",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "785d721c-0b73-4321-9254-182cafef5a51",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        820,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "746570222",
+        "text": "<b>ERRORE ESECUZIONE LOG MANAGER</b>",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "HTML"
+        }
+      },
+      "id": "74cb507b-e011-45ee-862b-477b81dcc49a",
+      "name": "Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        1040,
+        340
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "FLwX2cDEVGLGY29S",
+          "name": "Net Target BOT"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-04-19T12:56:31.000Z",
+  "versionId": "beb31d0c-1ae3-4fd4-8371-26d56304e1a2"
+}
