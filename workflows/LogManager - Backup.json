@@ -1,0 +1,18 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2024-04-22T13:22:51.483Z",
+  "id": "t3J0lr0Iywl2OUTl",
+  "meta": null,
+  "name": "LogManager - Backup",
+  "nodes": [],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-04-22T13:22:51.483Z",
+  "versionId": "cdbd706b-f2c0-458f-aa74-784ab545abdd"
+}
