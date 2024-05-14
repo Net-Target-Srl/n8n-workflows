@@ -5,17 +5,6 @@
       "main": [
         [
           {
-            "node": "allegato",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "allegato": {
-      "main": [
-        [
-          {
             "node": "Microsoft Outlook",
             "type": "main",
             "index": 0
@@ -69,7 +58,7 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 1,
       "position": [
-        60,
+        240,
         320
       ],
       "webhookId": "b5642f3c-d537-45d2-b487-8e02e0e09bda"
@@ -77,16 +66,9 @@
     {
       "parameters": {
         "toRecipients": "={{ $('Webhook').item.json[\"query\"][\"email\"] }}",
-        "subject": "Invito party - Venti Anni di Net Target",
-        "bodyContent": "=<!DOCTYPE html>\n<html lang=\"it\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n\t\n    <title>E20 PARTY</title>\n\t\n\t<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n\t<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n\t<link href=\"https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap\" rel=\"stylesheet\">\n\t\n\t<style>\n\n\t</style>\n</head>\n<body style=\"background-color: #5B5959; font-family: 'Montserrant', sans-serif;\">\n\t<p style=\"margin-top: 35px; color: #5B5959\">Invito ufficiale - </p>\n\t<div style=\"width: 100%; max-width: 550px; display: block; margin-left: auto; margin-right: auto; margin-top: 40px;\">\n\t\t<h1 style=\"text-align: center; color: #F3F5F9; margin-top: 45px; font-size: 48pt; line-height: 48px;\">\n\t\t\tVENTI ANNI<br>\n\t\t\t<span style=\"text-align: center; color: #F3F5F9; font-size: 32pt;\">di NET TARGET</span>\n\t\t</h1>\n\t\t<p style=\"padding: 0px 25px; color: #F3F5F9; font-family: 'Montserrant', sans-serif; font-size: 12pt; line-height: 18pt; letter-spacing: 0.6px; text-align: justify\">\n\t\t\tCiao <span style=\"color: #FF8636; font-weight: bold;\">{{ $('Webhook').item.json[\"query\"][\"nome\"] }}</span>,\n\t\t</p>\n\t\t<p style=\"padding: 0px 25px; color: #F3F5F9; font-family: 'Montserrant', sans-serif; font-size: 12pt; line-height: 18pt; letter-spacing: 0.6px; text-align: justify\">\n\t\t\tQuest'anno celebriamo i <span style=\"color: #4AB445; font-weight: bold;\">20 anni</span> di Net Target e vorremmo festeggiarli con tutte le persone che hanno reso possibile questa bellissima avventura.\n\t\t</p>\n\t\t<p style=\"padding: 0px 25px; color: #F3F5F9; font-family: 'Montserrant', sans-serif; font-size: 12pt; line-height: 18pt; letter-spacing: 0.6px; text-align: justify\">\n\t\t\tTi aspettiamo per un Party con DJ e open bar alla <span style=\"color: #4AB445; font-weight: bold;\">Tenuta colle Piajo</span> di Nembro, <span style=\"color: #FF8636; font-weight: bold;\">Giovedì 16 Maggio</span> dalle 21.\n\t\t</p>\n\t\t<p style=\"padding: 0px 25px; color: #F3F5F9; font-family: 'Montserrant', sans-serif; font-size: 12pt; line-height: 18pt; letter-spacing: 0.6px; text-align: justify\">\n\t\t\tTi chiediamo di confermare la tua presenza entro il <b>5 Maggio</b> cliccando sul pulsante qui sotto.\n\t\t</p>\n\t\t<p style=\"margin-top: 30px; padding: 0px 25px; color: #F3F5F9; font-family: 'Montserrant', sans-serif; font-size: 12pt; line-height: 18pt; letter-spacing: 0.6px; text-align: justify\">\n\t\t\t<i>Francesco Brissoni</i>\n\t\t</p>\n\t\t<p style=\"text-align: center; margin-top: 45px; font-size: 18px;\"><a href=\"https://e20party.net-target.it/?id={{ $('Webhook').item.json[\"query\"][\"id\"] }}\" style=\"background-color: #F3F5F9; padding: 11px 20px 10px 20px; border-radius: 8px; color: #7A3D8e; text-decoration: none; font-weight: 900;\">CONFERMA PARTECIPAZIONE</a></p>\n\t\t<p style=\"margin-top: 50px; padding: 0px 25px; color: #b0b0b0; font-family: 'Montserrant', sans-serif; font-size: 9pt; line-height: 18pt; letter-spacing: 0.6px; text-align: center\">\n\t\t\tNet Target Srl | Via Sant Jesus 2 - 24027 Nembro BG<br>\n\t\t\ttel. <a style=\"color: #b0b0b0;\" href=\"tel:+390350400204\">035 0400204</a> | <a style=\"color: #b0b0b0\" href=\"https://net-target.it\">net-target.it</a>\n\t\t</p>\n\t\t<p style=\"margin-top: 35px; color: #5B5959\">.</p>\n\t</div>\n</body>\n</html>",
+        "subject": "={{ $('Webhook').item.json[\"query\"][\"ogg\"] }} - Venti Anni di Net Target",
+        "bodyContent": "=<!DOCTYPE html>\n<html lang=\"it\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n\t\n    <title>E20 PARTY</title>\n\t\n\t<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n\t<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n\t<link href=\"https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap\" rel=\"stylesheet\">\n\t\n\t<style>\n\n\t</style>\n</head>\n<body style=\"background-color: #5B5959; font-family: 'Montserrant', sans-serif;\">\n\t<p style=\"margin-top: 35px; color: #5B5959\">E20 Party - Net Target</p>\n\t<div style=\"width: 100%; max-width: 550px; display: block; margin-left: auto; margin-right: auto; margin-top: 40px;\">\n\t\t<h1 style=\"text-align: center; color: #F3F5F9; margin-top: 45px; font-size: 48pt; line-height: 48px;\">\n\t\t\tVENTI ANNI<br>\n\t\t\t<span style=\"text-align: center; color: #F3F5F9; font-size: 32pt;\">di NET TARGET</span>\n\t\t</h1>\n\t\t\n\t\t<p style=\"padding: 0px 25px; color: #F3F5F9; font-family: 'Montserrant', sans-serif; font-size: 12pt; line-height: 18pt; letter-spacing: 0.6px; text-align: justify\">\n\t\t\tCiao <span style=\"font-weight: bold;\">{{ $('Webhook').item.json[\"query\"][\"nome\"] }}</span>,\n\t\t</p>\n\t\t\n\t\t<p style=\"padding: 0px 25px; color: #F3F5F9; font-family: 'Montserrant', sans-serif; font-size: 12pt; line-height: 18pt; letter-spacing: 0.6px; text-align: justify\">\n\t\t\tGrazie per aver confermato la tua partecipazione all'evento <b>E20 Party</b> di <b>Net Target</b>.\n\t\t</p>\n\t\t\n\t\t<p style=\"padding: 0px 25px; color: #F3F5F9; font-family: 'Montserrant', sans-serif; font-size: 12pt; line-height: 18pt; letter-spacing: 0.6px; text-align: justify\">\n\t\t\tTi aspettiamo alle {{ $('Webhook').item.json[\"query\"][\"orario\"] }} di <span style=\"color: #FF8636; font-weight: bold;\">Giovedì 16 Maggio</span> per {{ $('Webhook').item.json[\"query\"][\"testo\"] }} presso la <a href=\"https://www.piajo.it\" style=\"color: #4AB445; font-weight: bold;\">Tenuta colle Piajo</a> in Via Piajo 1 a Nembro (BG).\n\t\t</p>\n\t\t\n\t\t<p style=\"text-align: center; margin-top: 30px; margin-bottom: 55px; font-size: 18px;\"><a href=\"https://maps.app.goo.gl/zKkAa5SegPsFsY7H9\" style=\"background-color: #F3F5F9; padding: 11px 20px 10px 20px; border-radius: 8px; color: #7A3D8e; text-decoration: none; font-weight: 900;\">OTTIENI INDICAZIONI</a></p>\n\t\t<p style=\"padding: 0px 25px; color: #F3F5F9; font-family: 'Montserrant', sans-serif; font-size: 12pt; line-height: 18pt; letter-spacing: 0.6px; text-align: justify\">\n\t\t\tPer qualsiasi informazione o dubbio, rispondi a questa mail.<br>\n\t\t\t<br>\n\t\t\tA presto\n\t\t</p>\n\t\t\n\t\t<p style=\"margin-top: 30px; padding: 0px 25px; color: #F3F5F9; font-family: 'Montserrant', sans-serif; font-size: 12pt; line-height: 18pt; letter-spacing: 0.6px; text-align: justify\">\n\t\t\t<i>Francesco Brissoni</i>\n\t\t</p>\n\n\t\t<p style=\"margin-top: 50px; padding: 0px 25px; color: #b0b0b0; font-family: 'Montserrant', sans-serif; font-size: 9pt; line-height: 18pt; letter-spacing: 0.6px; text-align: center\">\n\t\t\tNet Target Srl | Via Sant Jesus 2 - 24027 Nembro BG<br>\n\t\t\ttel. <a style=\"color: #b0b0b0;\" href=\"tel:+390350400204\">035 0400204</a> | <a style=\"color: #b0b0b0\" href=\"https://net-target.it\">net-target.it</a>\n\t\t</p>\n\t\t<p style=\"margin-top: 35px; color: #5B5959\">.</p>\n\t</div>\n</body>\n</html>",
         "additionalFields": {
-          "attachments": {
-            "attachments": [
-              {
-                "binaryPropertyName": "data"
-              }
-            ]
-          },
           "bodyContentType": "html"
         }
       },
@@ -95,7 +77,7 @@
       "type": "n8n-nodes-base.microsoftOutlook",
       "typeVersion": 2,
       "position": [
-        620,
+        560,
         320
       ],
       "credentials": {
@@ -104,20 +86,6 @@
           "name": "e20party@net-target.it"
         }
       }
-    },
-    {
-      "parameters": {
-        "url": "https://e20party.net-target.it/Invito-E20Party.pdf",
-        "options": {}
-      },
-      "id": "2b37f738-51b8-4d1d-9066-ca4e4bd5a9c6",
-      "name": "allegato",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.1,
-      "position": [
-        340,
-        320
-      ]
     },
     {
       "parameters": {
@@ -177,6 +145,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2024-04-23T10:12:52.000Z",
-  "versionId": "a2f7b9cb-392f-4c78-bd28-e4a879fc121b"
+  "updatedAt": "2024-05-13T15:55:04.000Z",
+  "versionId": "039b68cc-e651-4de6-9c03-1bb00f17947f"
 }
