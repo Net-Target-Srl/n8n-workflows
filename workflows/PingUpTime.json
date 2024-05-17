@@ -1,0 +1,74 @@
+{
+  "active": true,
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-05-16T10:09:34.471Z",
+  "id": "A0dItt3j7dibhY8n",
+  "meta": null,
+  "name": "PingUpTime",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes"
+            }
+          ]
+        }
+      },
+      "id": "0406005d-a3d3-442b-959e-dbc09ae7fcf8",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        820,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://pinguptime.ntcloud.it",
+        "options": {
+          "timeout": 60000
+        }
+      },
+      "id": "0087f11a-73b8-4cc6-8693-adcaf2bb7649",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1040,
+        320
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Europe/Rome",
+    "saveExecutionProgress": true,
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrencyRules": []
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-05-16T10:12:23.000Z",
+  "versionId": "9973f388-f943-410c-8a7d-ad7f506ac89b"
+}
