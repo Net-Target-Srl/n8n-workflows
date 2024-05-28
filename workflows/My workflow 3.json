@@ -1,57 +1,80 @@
 {
   "active": false,
   "connections": {
-    "When clicking \"Execute Workflow\"": {
+    "Chat Trigger": {
       "main": [
         [
           {
-            "node": "Send Email",
+            "node": "AI Agent",
             "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
             "index": 0
           }
         ]
       ]
     }
   },
-  "createdAt": "2024-02-05T11:17:03.260Z",
-  "id": "Y4sKbwM6IgqE26B1",
-  "meta": null,
+  "createdAt": "2024-05-27T13:07:30.128Z",
+  "id": "FjjBqiqqnifKFkCL",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "My workflow 3",
   "nodes": [
     {
       "parameters": {},
-      "id": "3490df52-45e3-4e81-975c-599c24bb6d75",
-      "name": "When clicking \"Execute Workflow\"",
-      "type": "n8n-nodes-base.manualTrigger",
+      "id": "3151467a-7939-4bc5-b6e7-6953b77eb795",
+      "name": "Chat Trigger",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
       "typeVersion": 1,
       "position": [
-        920,
-        380
+        820,
+        320
+      ],
+      "webhookId": "cd4d4c5a-0979-461d-ad58-9df71cb372b1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "37edb336-4680-4d5a-9c3e-bd60215030e3",
+      "name": "AI Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.5,
+      "position": [
+        1040,
+        320
       ]
     },
     {
       "parameters": {
-        "fromEmail": "info@erp.rossotech.net",
-        "toEmail": "mattia.bergamelli@consamb.it",
-        "subject": "prova",
-        "html": "<!DOCTYPE html>\n<html xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:o=\"urn:schemas-microsoft-com:office:office\"><head>\n  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n  <meta name=\"viewport\" content=\"initial-scale=1.0\">\n  <meta name=\"format-detection\" content=\"telephone=no\">\n  <title>MOSAICO Responsive Email Designer</title>\n  \n  <style type=\"text/css\">\n    body{ margin: 0; padding: 0; }\n    img{ border: 0px; display: block; }\n\n    .socialLinks{ font-size: 6px; }\n    .socialLinks a{\n      display: inline-block;\n    }\n\n    .long-text p{ margin: 1em 0px; }\n    .long-text p:last-child{ margin-bottom: 0px; }\n    .long-text p:first-child{ margin-top: 0px; }\n  </style>\n  <style type=\"text/css\">\n    /* yahoo, hotmail */\n    .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div{ line-height: 100%; }\n    .yshortcuts a{ border-bottom: none !important; }\n    .vb-outer{ min-width: 0 !important; }\n    .RMsgBdy, .ExternalClass{\n      width: 100%;\n      background-color: #e9e9e9;\n      background-color: #e9e9e9}\n\n    /* outlook/office365 add buttons outside not-linked images and safari have 2px margin */\n    [o365] button{ margin: 0 !important; }\n\n    /* outlook */\n    table{ mso-table-rspace: 0pt; mso-table-lspace: 0pt; }\n    #outlook a{ padding: 0; }\n    img{ outline: none; text-decoration: none; border: none; -ms-interpolation-mode: bicubic; }\n    a img{ border: none; }\n\n    @media screen and (max-width: 600px) {\n      table.vb-container, table.vb-row{\n        width: 95% !important;\n      }\n\n      .mobile-hide{ display: none !important; }\n      .mobile-textcenter{ text-align: center !important; }\n\n      .mobile-full{ \n        width: 100% !important;\n        max-width: none !important;\n      }\n    }\n    /* previously used also screen and (max-device-width: 600px) but Yahoo Mail doesn't support multiple queries */\n  </style>\n  <style type=\"text/css\">\n    \n    #ko_textBlock_1 .links-color a, #ko_textBlock_1 .links-color a:link, #ko_textBlock_1 .links-color a:visited, #ko_textBlock_1 .links-color a:hover{\n      color: transparent;\n      color: transparent;\n      text-decoration: underline\n    }\n    \n    # .links-color a, # .links-color a:link, # .links-color a:visited, # .links-color a:hover{\n      color: #cccccc;\n      color: #cccccc;\n      text-decoration: underline\n    }\n    </style>\n  \n</head>\n<!--[if !(gte mso 16)]-->\n<body bgcolor=\"#3f3f3f\" text=\"#919191\" alink=\"#cccccc\" vlink=\"#cccccc\" style=\"margin: 0; padding: 0; background-color: #3f3f3f; color: #919191;\"><!--<![endif]--><center>\n\n  \n\n  <table role=\"presentation\" class=\"vb-outer\" width=\"100%\" cellpadding=\"0\" border=\"0\" cellspacing=\"0\" bgcolor=\"#bfbfbf\" id=\"ko_titleBlock_1\" style=\"background-color: #bfbfbf\">\n      <tbody><tr><td class=\"vb-outer\" align=\"center\" valign=\"top\" style=\"padding-left: 9px; padding-right: 9px; font-size: 0\">\n      <!--[if (gte mso 9)|(lte ie 8)]><table role=\"presentation\" align=\"center\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" width=\"570\"><tr><td align=\"center\" valign=\"top\"><![endif]--><!--\n      --><div style=\"margin: 0 auto; max-width: 570px; -mru-width: 0px\"><table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" bgcolor=\"#ffffff\" width=\"570\" class=\"vb-row\" style=\"border-collapse: separate; width: 100%; background-color: #ffffff; mso-cellspacing: 0px; border-spacing: 0px; max-width: 570px; -mru-width: 0px\">\n        \n        <tbody><tr>\n      <td align=\"center\" valign=\"top\" style=\"font-size: 0; padding: 0 9px\"><div style=\"vertical-align: top; width: 100%; max-width: 552px; -mru-width: 0px\"><!--\n        --><table role=\"presentation\" class=\"vb-content\" border=\"0\" cellspacing=\"9\" cellpadding=\"0\" style=\"border-collapse: separate; width: 100%; mso-cellspacing: 9px; border-spacing: 9px\" width=\"552\">\n          \n          <tbody><tr>\n      <td width=\"100%\" valign=\"top\" align=\"center\" style=\"font-weight: normal; color: #3f3f3f; font-size: 22px; font-family: Arial, Helvetica, sans-serif; text-align: center\"><span style=\"font-weight: normal\">Reset Password</span></td>\n    </tr>\n        \n        </tbody></table></div></td>\n    </tr>\n      \n      </tbody></table></div><!--\n    --><!--[if (gte mso 9)|(lte ie 8)]></td></tr></table><![endif]-->\n    </td></tr>\n    </tbody></table><table role=\"presentation\" class=\"vb-outer\" width=\"100%\" cellpadding=\"0\" border=\"0\" cellspacing=\"0\" bgcolor=\"#bfbfbf\" id=\"ko_textBlock_1\" style=\"background-color: #bfbfbf\">\n      <tbody><tr><td class=\"vb-outer\" align=\"center\" valign=\"top\" style=\"padding-left: 9px; padding-right: 9px; font-size: 0\">\n      <!--[if (gte mso 9)|(lte ie 8)]><table role=\"presentation\" align=\"center\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" width=\"570\"><tr><td align=\"center\" valign=\"top\"><![endif]--><!--\n      --><div style=\"margin: 0 auto; max-width: 570px; -mru-width: 0px\"><table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"18\" bgcolor=\"#ffffff\" width=\"570\" class=\"vb-container\" style=\"border-collapse: separate; width: 100%; background-color: #ffffff; mso-cellspacing: 18px; border-spacing: 18px; max-width: 570px; -mru-width: 0px\">\n        \n        <tbody><tr><td class=\"long-text links-color\" width=\"100%\" valign=\"top\" align=\"left\" style=\"font-weight: normal; color: #3f3f3f; font-size: 13px; font-family: Arial, Helvetica, sans-serif; text-align: left; line-height: normal\"><p style=\"margin: 1em 0px; margin-top: 0px;\">Ciao NOME COGNOME,<br>Ricevi questa mail perché hai richiesto il cambio password per la piattaforma ERP.</p>\n<p style=\"margin: 1em 0px;\">Se non sei stat* tu, ignora questa email.</p>\n<p style=\"margin: 1em 0px;\">&nbsp;</p>\n<p style=\"margin: 1em 0px; margin-bottom: 0px;\">- Il team di ERP Rossotech -</p></td></tr>\n      \n      </tbody></table></div><!--\n    --><!--[if (gte mso 9)|(lte ie 8)]></td></tr></table><![endif]-->\n    </td></tr>\n    </tbody></table><table role=\"presentation\" class=\"vb-outer\" width=\"100%\" cellpadding=\"0\" border=\"0\" cellspacing=\"0\" bgcolor=\"#bfbfbf\" id=\"ko_buttonBlock_1\" style=\"background-color: #bfbfbf\">\n      <tbody><tr><td class=\"vb-outer\" align=\"center\" valign=\"top\" style=\"padding-left: 9px; padding-right: 9px; font-size: 0\">\n      <!--[if (gte mso 9)|(lte ie 8)]><table role=\"presentation\" align=\"center\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" width=\"570\"><tr><td align=\"center\" valign=\"top\"><![endif]--><!--\n      --><div style=\"margin: 0 auto; max-width: 570px; -mru-width: 0px\"><table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"18\" bgcolor=\"#ffffff\" width=\"570\" class=\"vb-container\" style=\"border-collapse: separate; width: 100%; background-color: #ffffff; mso-cellspacing: 18px; border-spacing: 18px; max-width: 570px; -mru-width: 0px\">\n        \n        <tbody><tr>\n      <td valign=\"top\" align=\"center\"><table role=\"presentation\" cellpadding=\"12\" border=\"0\" align=\"center\" cellspacing=\"0\" style=\"border-spacing: 0; mso-padding-alt: 12px 12px 12px 12px\"><tbody><tr>\n        <td width=\"auto\" valign=\"middle\" align=\"center\" bgcolor=\"#bfbfbf\" style=\"text-align: center; font-weight: normal; padding: 12px; padding-left: 14px; padding-right: 14px; background-color: #bfbfbf; color: #3f3f3f; font-size: 22px; font-family: Arial, Helvetica, sans-serif; border-radius: 4px\"><a style=\"text-decoration: none; font-weight: normal; color: #3f3f3f; font-size: 22px; font-family: Arial, Helvetica, sans-serif\" target=\"_new\" href=\"https://erp.rossotech.net/login/password-reset/?token=abcd1234\">Cambia password</a></td>\n      </tr></tbody></table></td>\n    </tr>\n      \n      </tbody></table></div><!--\n    --><!--[if (gte mso 9)|(lte ie 8)]></td></tr></table><![endif]-->\n    </td></tr>\n    \n</center><!--[if !(gte mso 16)]--></body><!--<![endif]--></html>",
+        "model": "gpt-3.5-turbo-0125",
         "options": {
-          "appendAttribution": false,
-          "allowUnauthorizedCerts": true
+          "maxTokens": 2048
         }
       },
-      "id": "8a317d3b-4d5b-412c-b4d2-b0b6cb9d3dc8",
-      "name": "Send Email",
-      "type": "n8n-nodes-base.emailSend",
-      "typeVersion": 2.1,
+      "id": "43228318-d282-43be-b4ee-f2ea5ac2f1fa",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
       "position": [
-        1100,
-        380
+        1060,
+        540
       ],
       "credentials": {
-        "smtp": {
-          "id": "jhZXOGtSuA6WOuhi",
-          "name": "ERP Rossotech"
+        "openAiApi": {
+          "id": "RhrJXV3TvjRKBk58",
+          "name": "OpenAi account"
         }
       }
     }
@@ -63,6 +86,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2024-02-05T11:30:14.000Z",
-  "versionId": "23ea6064-d837-4f16-876d-b4173a09a5a0"
+  "updatedAt": "2024-05-27T13:07:30.128Z",
+  "versionId": "d7ed2f76-2e9f-4e7c-bf8c-713668e2d8bf"
 }
