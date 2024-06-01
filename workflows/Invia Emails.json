@@ -1,0 +1,102 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking \"Test workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Select Indirizzi",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Select Indirizzi": {
+      "main": [
+        [
+          {
+            "node": "Invia Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-05-31T07:40:16.213Z",
+  "id": "JnrREsmhU1SVPKah",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Invia Emails",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "edab1b53-4de7-4b8f-b032-daf37d4c3b26",
+      "name": "When clicking \"Test workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        620,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT nomeCliente, nome, cognome, email, telefono, note, gestionale.datiAggiuntiviClienti.nomeCompletoFIC AS nomeFic FROM contatti.rubrica\nINNER JOIN gestionale.datiAggiuntiviClienti ON gestionale.datiAggiuntiviClienti.idFattureInCloud = contatti.rubrica.idCliente\nWHERE rubrica.dimesso = 0 AND rubrica.nomeCliente = \"NetTarge\"",
+        "options": {}
+      },
+      "id": "25903347-244b-4079-a172-a4fa99dfba6f",
+      "name": "Select Indirizzi",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        840,
+        380
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "nXXqWesyr9LQfioj",
+          "name": "MySQL - VM1 - Contatti"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "toRecipients": "={{ $json.email }}",
+        "subject": "Aggiornamento piattaforma di Helpdesk",
+        "bodyContent": "=Ciao a tutti,<br>\n<br>\nAbbiamo una novità! Dal [DATA], il nostro servizio di assistenza si sposta su una nuova piattaforma.<br>\nQuesto è il link a te riservato: <a href=\"https://help.net-target.it/index.php?a=add&custom1={{ $json.nomeFic }}&name={{ $json[\"nome\"] }} {{ $json[\"cognome\"] }}\">https://help.net-target.it/index.php?a=add&custom1={{ $json.nomeFic }}&name={{ $json[\"nome\"] }} {{ $json[\"cognome\"] }}</a>.<br>\n<br>\nNon preoccupatevi, tutti i ticket che avete già aperto o che aprirete via email rimarranno validi e continueremo a gestirli come al solito. Non dovrete fare nulla di diverso!<br>\n<br>\nSe avete domande o dubbi, siamo sempre qui per aiutarvi.<br>\n<br>\nGrazie per la vostra collaborazione!<br>\n<br>\n<b><i>Francesco e Mattia</i></b><br>\n<br>\n<img src=\"https://ntgestionale-public.ntcloud.it/LogoNetTarget-h250px.png\" style=\"height:50px\"><br>\n<b>Net Target Srl</b><br>\n<a href=\"mailto:info@net-target.it\">info@net-target.it</a><br>\nVia Sant Jesus 2 - 24027 Nembro BG<br>\n<a href=\"https://net-target.it\">net-target.it</a><br>",
+        "additionalFields": {
+          "bodyContentType": "html",
+          "replyTo": "info@net-target.it"
+        }
+      },
+      "id": "dffa63bc-b07f-4603-823d-f7f47919fb05",
+      "name": "Invia Email",
+      "type": "n8n-nodes-base.microsoftOutlook",
+      "typeVersion": 2,
+      "position": [
+        1060,
+        380
+      ],
+      "credentials": {
+        "microsoftOutlookOAuth2Api": {
+          "id": "Cy4idzuZ3SJGNQGY",
+          "name": "f.brissoni@net-target.it"
+        }
+      },
+      "onError": "continueErrorOutput"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-05-31T16:03:10.000Z",
+  "versionId": "aa55f100-e0cc-43d8-947b-042e1d822aef"
+}
