@@ -1,20 +1,31 @@
 {
   "active": false,
   "connections": {
-    "When clicking \"Test workflow\"": {
+    "Chat Trigger": {
       "main": [
         [
           {
-            "node": "Wordpress",
+            "node": "Basic LLM Chain",
             "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ollama Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
             "index": 0
           }
         ]
       ]
     }
   },
-  "createdAt": "2024-01-28T20:46:46.256Z",
-  "id": "63lhvXEqftlDja4a",
+  "createdAt": "2024-05-23T15:37:52.138Z",
+  "id": "lOQxrWWzVEN0GbPm",
   "meta": {
     "templateCredsSetupCompleted": true
   },
@@ -22,27 +33,45 @@
   "nodes": [
     {
       "parameters": {},
-      "id": "0d2c084a-7f41-4873-a0a1-ca7d47efaaf9",
-      "name": "When clicking \"Test workflow\"",
-      "type": "n8n-nodes-base.manualTrigger",
+      "id": "472b9bab-9109-4752-9ba1-87469e20dd74",
+      "name": "Chat Trigger",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
       "typeVersion": 1,
       "position": [
-        820,
+        480,
         320
-      ]
+      ],
+      "webhookId": "ed7f990f-ffa4-48d8-9ada-741f45731305"
     },
     {
       "parameters": {
-        "operation": "get",
+        "model": "llama3",
         "options": {}
       },
-      "id": "7a742370-4b52-411b-8c2b-14d6fcd4eef0",
-      "name": "Wordpress",
-      "type": "n8n-nodes-base.wordpress",
+      "id": "2e0924d2-3ba4-48ea-bdc6-76b9969b125d",
+      "name": "Ollama Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
       "typeVersion": 1,
       "position": [
-        1000,
-        340
+        720,
+        500
+      ],
+      "credentials": {
+        "ollamaApi": {
+          "id": "zdjCBvx9wuRlhN7p",
+          "name": "Ollama account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "2ef57cc5-05dd-4d30-a62d-c1151dc69485",
+      "name": "Basic LLM Chain",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.4,
+      "position": [
+        700,
+        320
       ]
     }
   ],
@@ -52,7 +81,7 @@
   },
   "staticData": null,
   "tags": [],
-  "triggerCount": 2,
-  "updatedAt": "2024-05-22T16:07:27.000Z",
-  "versionId": "12859f68-13af-47a5-b5da-aa14581849f5"
+  "triggerCount": 0,
+  "updatedAt": "2024-05-23T15:37:52.138Z",
+  "versionId": "8a8ec3e7-1a11-4e9b-99b2-ad14862f13c5"
 }
