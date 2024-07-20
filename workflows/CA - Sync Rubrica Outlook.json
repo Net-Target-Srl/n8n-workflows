@@ -1,0 +1,160 @@
+{
+  "active": true,
+  "connections": {
+    "Microsoft Outlook": {
+      "main": [
+        [
+          {
+            "node": "CreoNuovoContatto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Microsoft Outlook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-07-18T08:32:16.491Z",
+  "id": "J3gK80Tnnizm9WnW",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "CA - Sync Rubrica Outlook",
+  "nodes": [
+    {
+      "parameters": {
+        "resource": "contact",
+        "returnAll": true,
+        "output": "fields",
+        "fields": [
+          "lastModifiedDateTime",
+          "givenName",
+          "surname",
+          "companyName",
+          "mobilePhone",
+          "businessPhones",
+          "homePhones"
+        ],
+        "filters": {}
+      },
+      "id": "3d1db241-3a38-465e-9c73-d054538a16c9",
+      "name": "Microsoft Outlook",
+      "type": "n8n-nodes-base.microsoftOutlook",
+      "typeVersion": 2,
+      "position": [
+        1480,
+        380
+      ],
+      "credentials": {
+        "microsoftOutlookOAuth2Api": {
+          "id": "JYM22WNvz5DtZM2I",
+          "name": "publicfolder@consamb.it"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "table": {
+          "__rl": true,
+          "value": "rubrica",
+          "mode": "list",
+          "cachedResultName": "rubrica"
+        },
+        "dataMode": "defineBelow",
+        "columnToMatchOn": "id",
+        "valueToMatchOn": "={{ $json.id }}",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "ultima_modifica",
+              "value": "={{ $json.lastModifiedDateTime }}"
+            },
+            {
+              "column": "nome",
+              "value": "={{ $json.givenName }}"
+            },
+            {
+              "column": "cognome",
+              "value": "={{ $json.surname }}"
+            },
+            {
+              "column": "azienda",
+              "value": "={{ $json.companyName }}"
+            },
+            {
+              "column": "tel_casa",
+              "value": "={{ $json.businessPhones[0] }}"
+            },
+            {
+              "column": "tel_cellulare",
+              "value": "={{ $json.mobilePhone }}"
+            },
+            {
+              "column": "tel_lavoro",
+              "value": "={{ $json.businessPhones[0] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "70df66a0-685a-40a1-bdd8-d90585f71ad6",
+      "name": "CreoNuovoContatto",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        1700,
+        380
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "kbos8qVLDCwrripj",
+          "name": "MySQL - Localhost (n8n_all)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 10
+            }
+          ]
+        }
+      },
+      "id": "da72dc0e-6591-475d-9006-48beb9b36072",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        1200,
+        380
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrencyRules": []
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-07-19T16:16:09.000Z",
+  "versionId": "8dbe47ef-6150-40e5-b288-f962cb4407ef"
+}
