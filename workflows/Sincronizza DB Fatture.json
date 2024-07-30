@@ -1,5 +1,5 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
     "Schedule Trigger": {
       "main": [
@@ -82,7 +82,9 @@
   },
   "createdAt": "2023-12-13T13:35:06.793Z",
   "id": "ROS3ZKvX0wMnMtBg",
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "Sincronizza DB Fatture",
   "nodes": [
     {
@@ -90,8 +92,7 @@
         "rule": {
           "interval": [
             {
-              "field": "minutes",
-              "minutesInterval": 15
+              "field": "hours"
             }
           ]
         }
@@ -292,6 +293,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-12T13:10:32.000Z",
-  "versionId": "a4ee1891-87ff-4c94-a712-a8d8acd955be"
+  "updatedAt": "2024-07-29T08:54:46.000Z",
+  "versionId": "9b7a6f55-a1d0-47d8-af4d-fa97eb67caa1"
 }
