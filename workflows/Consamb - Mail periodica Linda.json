@@ -26,7 +26,9 @@
   },
   "createdAt": "2023-11-02T09:26:19.304Z",
   "id": "lzj64w5LzV2yvlLI",
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "Consamb - Mail periodica Linda",
   "nodes": [
     {
@@ -70,8 +72,8 @@
         "rule": {
           "interval": [
             {
-              "field": "cronExpression",
-              "expression": "00 10 1 * *"
+              "field": "months",
+              "triggerAtHour": 8
             }
           ]
         }
@@ -104,6 +106,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2023-12-12T14:50:12.000Z",
-  "versionId": "0794243e-1a7f-4cbd-aa0c-77e6fc180ab4"
+  "updatedAt": "2024-08-05T08:07:03.000Z",
+  "versionId": "d39ca8a5-f411-4ca6-87f3-165fdc40b8f5"
 }
