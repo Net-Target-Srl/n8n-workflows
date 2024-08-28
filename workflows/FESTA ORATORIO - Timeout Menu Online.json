@@ -1,0 +1,75 @@
+{
+  "active": false,
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-08-27T16:23:57.553Z",
+  "id": "BCv54K8HyHqIZhoR",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "FESTA ORATORIO - Timeout Menu Online",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 2
+            }
+          ]
+        }
+      },
+      "id": "6467c483-f20a-4feb-9212-3c19b66f553b",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        600,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://menu.oratorioinfesta.it/timeout.php",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "key",
+              "value": "Password1!"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "00d0fe73-100a-4149-af55-22e5e797f26a",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        820,
+        320
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-08-27T16:56:33.000Z",
+  "versionId": "7d20750f-7992-4e5d-abce-03ef74c94301"
+}
