@@ -1,0 +1,73 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Send Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-08-27T17:05:34.311Z",
+  "id": "YdjoEJeDQAtwMkvR",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "FESTA ORATORIO - Invio email di benvenuto",
+  "nodes": [
+    {
+      "parameters": {
+        "fromEmail": "info@oratorioinfesta.it",
+        "toEmail": "={{ $json.query.mail }}",
+        "subject": "=Benvenuti! Il vostro tavolo è  {{ $json.query.tavolo }}",
+        "html": "=<!DOCTYPE html>\n        <html>\n        <head>\n            <meta http-equiv=\"x-ua-compatible\" content=\"ie=edge\">\n            <meta name=\"x-apple-disable-message-reformatting\">\n            <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n            <meta name=\"format-detection\" content=\"telephone=no, date=no, address=no, email=no\">\n            <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n        </head>\n        <body style=\"font-family: Helvetica, sans-serif; text-align: center;\">\n        <img src=\"https://oratorioinfesta.it/logo_stretto.png\" alt=\"LOGO ORATORIO NEMBRO\" style=\"width: 100%; max-width: 400px;\">\n        <h1 style=\"color: rgb(25, 135, 84)\">Tavolo: <b>{{ $json[\"query\"][\"tavolo\"] }}</b></h1>\n        <p style=\"font-size: 18px; line-height: 1.5;\">\n            Ciao <b>{{ $json[\"query\"][\"nome\"] }}</b>,<br>\n            Grazie per essere parte di questa bellissima festa!<br><br>\n            Da quest'anno potete anche effetturae l'ordine dal vostro telefono e andare in cassa solo per pagare.<br>\n            <a href=\"https://menu.oratorioinfesta.it/?idPrenotazione={{ $json[\"query\"][\"id\"] }}\">EFFETTUA IL TUO ORDINE</a>\n            <br>\n            <br>\n            <p style=\"color: grey\">Powered & Copyright by <a href=\"https://net-target.it\">Net Target Srl</a></p>\n        </p>\n        </body>\n        </html>",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "id": "03165cf6-a41b-40d9-a0d9-e3434b4b8ede",
+      "name": "Send Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        700,
+        260
+      ],
+      "credentials": {
+        "smtp": {
+          "id": "3k77opsQq0E8CrGR",
+          "name": "OratorioInFesta"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "path": "festa-mailok",
+        "options": {}
+      },
+      "id": "7ceb2fd5-b613-43da-b80b-a75932ba96b1",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        480,
+        260
+      ],
+      "webhookId": "9f877e52-1284-4d03-b34a-c9470beb28af"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-08-27T17:17:38.000Z",
+  "versionId": "22b2bf4d-9773-4a57-ae10-6e3d4f7cbe2c"
+}
