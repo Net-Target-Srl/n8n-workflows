@@ -1,11 +1,11 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
-    "When clicking \"Test workflow\"": {
+    "Webhook": {
       "main": [
         [
           {
-            "node": "Microsoft Outlook",
+            "node": "Telegram",
             "type": "main",
             "index": 0
           }
@@ -13,44 +13,51 @@
       ]
     }
   },
-  "createdAt": "2024-07-18T08:32:16.491Z",
-  "id": "J3gK80Tnnizm9WnW",
+  "createdAt": "2024-08-28T16:02:29.237Z",
+  "id": "cGcUtuXzXP0T5vD6",
   "meta": {
     "templateCredsSetupCompleted": true
   },
   "name": "My workflow 4",
   "nodes": [
     {
-      "parameters": {},
-      "id": "637ec2e9-d8b6-4d8a-813b-5a477a43943d",
-      "name": "When clicking \"Test workflow\"",
-      "type": "n8n-nodes-base.manualTrigger",
-      "typeVersion": 1,
+      "parameters": {
+        "chatId": "746570222",
+        "text": "=Nuova richiesta supporto <b>ORATORIOINFESTA</b>\nNome:  {{ $json.query.nome }}\nhttps://oratorioinfesta.it/aiuto/?id={{ $json.query.id }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "HTML"
+        }
+      },
+      "id": "9c734ffa-7707-4fa0-b900-b008871b4e15",
+      "name": "Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
       "position": [
-        820,
-        320
-      ]
+        800,
+        280
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "FLwX2cDEVGLGY29S",
+          "name": "Net Target BOT"
+        }
+      }
     },
     {
       "parameters": {
-        "resource": "contact",
-        "returnAll": true,
-        "filters": {}
+        "path": "nuova-chat",
+        "options": {}
       },
-      "id": "3d1db241-3a38-465e-9c73-d054538a16c9",
-      "name": "Microsoft Outlook",
-      "type": "n8n-nodes-base.microsoftOutlook",
+      "id": "fbd15d71-63d3-49e1-91d2-f1303060f008",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        1040,
-        320
+        580,
+        280
       ],
-      "credentials": {
-        "microsoftOutlookOAuth2Api": {
-          "id": "uQ4EvYpbYU7cTQq2",
-          "name": "gestionale@net-target.it"
-        }
-      }
+      "webhookId": "fd1242ca-bf8a-44f1-9271-8752d1bace68"
     }
   ],
   "pinData": {},
@@ -59,7 +66,7 @@
   },
   "staticData": null,
   "tags": [],
-  "triggerCount": 0,
-  "updatedAt": "2024-07-18T08:32:16.491Z",
-  "versionId": "0b89dd7f-fd07-45aa-a7a1-b32b3d15a50e"
+  "triggerCount": 1,
+  "updatedAt": "2024-08-28T16:17:56.000Z",
+  "versionId": "ad779256-6582-4afb-b4a2-80615d209c94"
 }
