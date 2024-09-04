@@ -281,7 +281,8 @@
     "node:Schedule Trigger": {
       "recurrencyRules": [
         9
-      ]
+      ],
+      "recurrenceRules": []
     }
   },
   "tags": [
