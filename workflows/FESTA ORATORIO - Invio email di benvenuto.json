@@ -25,7 +25,7 @@
         "fromEmail": "Oratorio In Festa <info@oratorioinfesta.it>",
         "toEmail": "={{ $json.query.mail }}",
         "subject": "=Benvenuti! Il vostro tavolo è  {{ $json.query.tavolo }}",
-        "html": "=<!DOCTYPE html>\n        <html>\n        <head>\n            <meta http-equiv=\"x-ua-compatible\" content=\"ie=edge\">\n            <meta name=\"x-apple-disable-message-reformatting\">\n            <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n            <meta name=\"format-detection\" content=\"telephone=no, date=no, address=no, email=no\">\n            <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n        </head>\n        <body style=\"font-family: Helvetica, sans-serif; text-align: center;\">\n        <img src=\"https://oratorioinfesta.it/logo_stretto.png\" alt=\"LOGO ORATORIO NEMBRO\" style=\"width: 100%; max-width: 400px;\">\n        <h1 style=\"color: rgb(25, 135, 84)\">Tavolo: <b>{{ $json[\"query\"][\"tavolo\"] }}</b></h1>\n        <p style=\"font-size: 18px; line-height: 1.5;\">\n            Ciao <b>{{ $json[\"query\"][\"nome\"] }}</b>,<br>\n            Grazie per essere parte di questa bellissima festa!<br><br>\n            Da quest'anno potete anche effetturae l'ordine dal vostro telefono e andare in cassa solo per pagare.<br>\n            <a href=\"https://menu.oratorioinfesta.it/?idPrenotazione={{ $json[\"query\"][\"id\"] }}\">EFFETTUA IL TUO ORDINE</a>\n            <br>\n            <br>\n            <p style=\"color: grey\">Powered & Copyright by <a href=\"https://net-target.it\">Net Target Srl</a></p>\n        </p>\n        </body>\n        </html>",
+        "html": "=<!DOCTYPE html>\n        <html>\n        <head>\n            <meta http-equiv=\"x-ua-compatible\" content=\"ie=edge\">\n            <meta name=\"x-apple-disable-message-reformatting\">\n            <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n            <meta name=\"format-detection\" content=\"telephone=no, date=no, address=no, email=no\">\n            <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n        </head>\n        <body style=\"font-family: Helvetica, sans-serif; text-align: center;\">\n        <img src=\"https://oratorioinfesta.it/logo_stretto.png\" alt=\"LOGO ORATORIO NEMBRO\" style=\"width: 100%; max-width: 400px;\">\n        <h1 style=\"color: rgb(25, 135, 84)\">Tavolo: <b>{{ $json[\"query\"][\"tavolo\"] }}</b></h1>\n        <p style=\"font-size: 18px; line-height: 1.5;\">\n            Ciao <b>{{ $json[\"query\"][\"nome\"] }}</b>,<br>\n            Grazie per essere parte di questa bellissima festa!<br><br>\n            Da quest'anno potete anche effettuare l'ordine dal vostro telefono e andare in cassa solo per pagare.<br>\n            <a href=\"https://menu.oratorioinfesta.it/?idPrenotazione={{ $json[\"query\"][\"id\"] }}\">EFFETTUA IL TUO ORDINE</a>\n            <br>\n            <br>\n            <p style=\"color: grey\">Powered & Copyright by <a href=\"https://net-target.it\">Net Target Srl</a></p>\n        </p>\n        </body>\n        </html>",
         "options": {
           "appendAttribution": false
         }
@@ -68,6 +68,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2024-08-29T09:50:44.000Z",
-  "versionId": "1fce25db-e949-4ca0-91dc-c10bfe224ec1"
+  "updatedAt": "2024-09-05T07:23:42.000Z",
+  "versionId": "a593dc33-b4a6-4599-861a-bf111787d75a"
 }
