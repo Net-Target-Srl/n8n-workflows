@@ -1,0 +1,141 @@
+{
+  "active": true,
+  "connections": {
+    "Crypto": {
+      "main": [
+        [
+          {
+            "node": "rappdata",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Crypto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "rappdata": {
+      "main": [
+        [
+          {
+            "node": "Invio a Email differente + Allegato",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-10-08T06:57:04.498Z",
+  "id": "ZL6cjnolOrehXb70",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Invio email Ferie",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "months",
+              "triggerAtDayOfMonth": 7,
+              "triggerAtHour": 10
+            }
+          ]
+        }
+      },
+      "id": "5fcf1666-f061-46d4-87e1-2382eb26057e",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        320,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "value": "={{ \"_service\" + $now.setZone('UTC').toFormat('yyyy-MM-dd') }}"
+      },
+      "id": "a064bc7f-ea8f-485f-bd91-6449e3016a69",
+      "name": "Crypto",
+      "type": "n8n-nodes-base.crypto",
+      "typeVersion": 1,
+      "position": [
+        520,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://gestionale.ntcloud.it/bi/emailFerie.php",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "token",
+              "value": "=_service:{{ $json.data }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "7ef27f81-aa30-4bea-86a1-0edfd0f1ff79",
+      "name": "rappdata",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        720,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "toRecipients": "=f.pegurri@scd-studio.it",
+        "subject": "=Ferie di {{ $json.mese }}",
+        "bodyContent": "=Ciao Francesca,<br>\nDi seguito le ferie registrate nel mese di {{ $json.mese }}.<br>\n<br>\n<br>\n{{ $json.testo }}\n<br>\n<br>\n<i>Email automatica dal Gestionale NTG</i>",
+        "additionalFields": {
+          "ccRecipients": "mattia.bergamelli@net-target.it, francesco.brissoni@net-target.it",
+          "bodyContentType": "html"
+        }
+      },
+      "id": "039da128-266b-4ab5-a7ae-ccbb73fb7469",
+      "name": "Invio a Email differente + Allegato",
+      "type": "n8n-nodes-base.microsoftOutlook",
+      "typeVersion": 2,
+      "position": [
+        960,
+        440
+      ],
+      "credentials": {
+        "microsoftOutlookOAuth2Api": {
+          "id": "uQ4EvYpbYU7cTQq2",
+          "name": "gestionale@net-target.it"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-10-08T07:39:50.000Z",
+  "versionId": "ebd8ce47-0a4b-4de7-b2b3-6af6a87d399d"
+}
