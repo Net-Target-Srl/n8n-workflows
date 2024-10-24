@@ -1,0 +1,74 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Microsoft Outlook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-10-24T08:32:41.469Z",
+  "id": "Zu8hVakwM46XrsSe",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Email Helpdesk",
+  "nodes": [
+    {
+      "parameters": {
+        "toRecipients": "={{ $json.query.email }}",
+        "subject": "Importante notifica: Aggiornamento servizio helpdesk a partire dal 1° novembre",
+        "bodyContent": "=<div style=\"text-align: center; color: #345; padding-top: 10px;\">\n<p style=\"text-align: left;\" data-sourcepos=\"7:1-7:14\">Ciao a tutti,</p>\n<p style=\"text-align: left;\" data-sourcepos=\"9:1-9:210\">Abbiamo una novit&agrave; per voi! A partire dal <strong>1&deg; novembre 2024</strong> il nostro helpdesk si trasferisce in una nuova piattaforma pi&ugrave; accogliente e funzionale: <a href=\"https://helpdesk.net-target.it\" target=\"_blank\" rel=\"noopener\">https://helpdesk.net-target.it</a></p>\n<p style=\"text-align: left;\" data-sourcepos=\"9:1-9:210\">&nbsp;</p>\n<p style=\"text-align: left;\" data-sourcepos=\"11:1-11:292\"><strong>Cosa significa questo?</strong></p>\n<p style=\"text-align: left;\" data-sourcepos=\"11:1-11:292\">Che potrete aprire i vostri ticket ancora pi&ugrave; facilmente e ricevere assistenza in tempi record.<br />Non preoccupatevi, aprire un ticket via email rimarr&agrave; sempre possibile 📨.<br /><strong>Inoltre, potrete aprire un nuovo ticket direttamente dalla piattaforma cliccando sul link!</strong></p>\n<p style=\"text-align: left;\" data-sourcepos=\"11:1-11:292\">&nbsp;</p>\n<p data-sourcepos=\"11:1-11:292\"><a style=\"background-color: #ff913e; padding: 7px 20px; border: 1.5px solid #bf6724; border-radius: 10px; text-decoration: none; color: #242424;\" href=\"https://net-target.hesk.com/index.php?a=add&name={{ $json.query.nome }}&email={{ $json.query.email }}&custom1={{ $json.query.azienda }}&priority=3\">Apri un ticket personalizzato</a></p>\n<p style=\"text-align: left;\" data-sourcepos=\"11:1-11:292\">&nbsp;</p>\n<p style=\"text-align: left;\" data-sourcepos=\"11:1-11:292\">Siamo sempre alla ricerca di modi per migliorare i nostri servizi. <strong>Se siete soddisfatti della nostra assistenza, vi invitiamo a lasciarci una recensione su Google: </strong><a href=\"https://g.page/r/CXCpgfSSb3dfEBM/review\" target=\"_blank\" rel=\"noopener\">https://g.page/r/CXCpgfSSb3dfEBM/review</a><br /><strong>Il vostro feedback &egrave; prezioso per noi! ⭐</strong></p>\n<p style=\"text-align: left;\" data-sourcepos=\"13:1-13:187\">&nbsp;</p>\n<p style=\"text-align: left;\" data-sourcepos=\"13:1-13:187\">Sappiamo che i cambiamenti possono creare qualche piccolo inconveniente , quindi ci scusiamo in anticipo per eventuali disagi nei giorni precedenti e successivi al trasferimento.<br />Faremo del nostro meglio per limitarli!</p>\n<p style=\"text-align: left;\" data-sourcepos=\"15:1-15:72\">&nbsp;</p>\n<p style=\"text-align: left;\" data-sourcepos=\"15:1-15:72\">Grazie per la vostra comprensione e per la fiducia che riponete in noi!</p>\n</div>",
+        "additionalFields": {
+          "importance": "High",
+          "bodyContentType": "html",
+          "replyTo": "assistenza@net-target.it"
+        }
+      },
+      "id": "a513de9f-2922-489c-8a1a-928baa3c56ac",
+      "name": "Microsoft Outlook",
+      "type": "n8n-nodes-base.microsoftOutlook",
+      "typeVersion": 2,
+      "position": [
+        800,
+        360
+      ],
+      "credentials": {
+        "microsoftOutlookOAuth2Api": {
+          "id": "Cy4idzuZ3SJGNQGY",
+          "name": "f.brissoni@net-target.it"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "path": "email-helpdesk",
+        "options": {}
+      },
+      "id": "fe105505-64d1-4b4e-93aa-4d42696b5208",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        580,
+        360
+      ],
+      "webhookId": "31a185ce-0a8d-4fc3-9979-0e0bb9a91ca2"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-10-24T09:08:30.000Z",
+  "versionId": "750160cb-d28f-437d-a7e4-e768b5be5772"
+}
