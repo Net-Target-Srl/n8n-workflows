@@ -1,6 +1,35 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
+    "Microsoft Outlook": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Webhook1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "Webhook": {
       "main": [
         [
@@ -24,7 +53,7 @@
       "parameters": {
         "toRecipients": "={{ $json.query.email }}",
         "subject": "Importante notifica: Aggiornamento servizio helpdesk a partire dal 1° novembre",
-        "bodyContent": "=<div style=\"text-align: center; color: #345; padding-top: 10px;\">\n<p style=\"text-align: left;\" data-sourcepos=\"7:1-7:14\">Ciao a tutti,</p>\n<p style=\"text-align: left;\" data-sourcepos=\"9:1-9:210\">Abbiamo una novit&agrave; per voi! A partire dal <strong>1&deg; novembre 2024</strong> il nostro helpdesk si trasferisce in una nuova piattaforma pi&ugrave; accogliente e funzionale: <a href=\"https://helpdesk.net-target.it\" target=\"_blank\" rel=\"noopener\">https://helpdesk.net-target.it</a></p>\n<p style=\"text-align: left;\" data-sourcepos=\"9:1-9:210\">&nbsp;</p>\n<p style=\"text-align: left;\" data-sourcepos=\"11:1-11:292\"><strong>Cosa significa questo?</strong></p>\n<p style=\"text-align: left;\" data-sourcepos=\"11:1-11:292\">Che potrete aprire i vostri ticket ancora pi&ugrave; facilmente e ricevere assistenza in tempi record.<br />Non preoccupatevi, aprire un ticket via email rimarr&agrave; sempre possibile 📨.<br /><strong>Inoltre, potrete aprire un nuovo ticket direttamente dalla piattaforma cliccando sul link!</strong></p>\n<p style=\"text-align: left;\" data-sourcepos=\"11:1-11:292\">&nbsp;</p>\n<p data-sourcepos=\"11:1-11:292\"><a style=\"background-color: #ff913e; padding: 7px 20px; border: 1.5px solid #bf6724; border-radius: 10px; text-decoration: none; color: #242424;\" href=\"https://net-target.hesk.com/index.php?a=add&name={{ $json.query.nome }}&email={{ $json.query.email }}&custom1={{ $json.query.azienda }}&priority=3\">Apri un ticket personalizzato</a></p>\n<p style=\"text-align: left;\" data-sourcepos=\"11:1-11:292\">&nbsp;</p>\n<p style=\"text-align: left;\" data-sourcepos=\"11:1-11:292\">Siamo sempre alla ricerca di modi per migliorare i nostri servizi. <strong>Se siete soddisfatti della nostra assistenza, vi invitiamo a lasciarci una recensione su Google: </strong><a href=\"https://g.page/r/CXCpgfSSb3dfEBM/review\" target=\"_blank\" rel=\"noopener\">https://g.page/r/CXCpgfSSb3dfEBM/review</a><br /><strong>Il vostro feedback &egrave; prezioso per noi! ⭐</strong></p>\n<p style=\"text-align: left;\" data-sourcepos=\"13:1-13:187\">&nbsp;</p>\n<p style=\"text-align: left;\" data-sourcepos=\"13:1-13:187\">Sappiamo che i cambiamenti possono creare qualche piccolo inconveniente , quindi ci scusiamo in anticipo per eventuali disagi nei giorni precedenti e successivi al trasferimento.<br />Faremo del nostro meglio per limitarli!</p>\n<p style=\"text-align: left;\" data-sourcepos=\"15:1-15:72\">&nbsp;</p>\n<p style=\"text-align: left;\" data-sourcepos=\"15:1-15:72\">Grazie per la vostra comprensione e per la fiducia che riponete in noi!</p>\n</div>",
+        "bodyContent": "=<div style=\"text-align: center; color: #345; padding-top: 10px;\">\n<p style=\"text-align: left;\" data-sourcepos=\"7:1-7:14\">Ciao a tutti,</p>\n<p style=\"text-align: left;\" data-sourcepos=\"9:1-9:210\">Abbiamo una novit&agrave; per voi!<br>A partire da <strong>Venerdì 25 ottobre 2024</strong> il nostro helpdesk si trasferisce in una nuova piattaforma: <a href=\"https://help.net-target.it\" target=\"_blank\" rel=\"noopener\">https://help.net-target.it</a></p>\n<p style=\"text-align: left;\" data-sourcepos=\"9:1-9:210\">&nbsp;</p>\n<p style=\"text-align: left;\" data-sourcepos=\"11:1-11:292\"><strong>Cosa significa questo?</strong></p>\n<p style=\"text-align: left;\" data-sourcepos=\"11:1-11:292\">Che potrete aprire i vostri ticket ancora pi&ugrave; facilmente e ricevere assistenza in tempi record.<br />Non preoccupatevi, aprire un ticket via email rimarr&agrave; sempre possibile 📨.<br /><strong>Potrete aprire un ticket più velocemente direttamente dalla piattaforma, cliccando sul link! Aggiungilo ai preferiti del tuo browser!</strong></p>\n<p style=\"text-align: left;\" data-sourcepos=\"11:1-11:292\">&nbsp;</p>\n<p data-sourcepos=\"11:1-11:292\"><a style=\"background-color: #ff913e; padding: 7px 20px; border: 1.5px solid #bf6724; border-radius: 10px; text-decoration: none; color: #242424;\" href=\"https://help.net-target.it/index.php?a=add&name={{ $json.query.nome }}&email={{ $json.query.email }}&custom1={{ $json.query.azienda }}&priority=3\">Apri un ticket personalizzato</a></p>\n<p style=\"text-align: left;\" data-sourcepos=\"11:1-11:292\">&nbsp;</p>\n<p style=\"text-align: left;\" data-sourcepos=\"11:1-11:292\">Siamo sempre alla ricerca di modi per migliorare i nostri servizi. <strong>Se siete soddisfatti della nostra assistenza, vi invitiamo a lasciarci una recensione su Google: </strong><a href=\"https://g.page/r/CXCpgfSSb3dfEBM/review\" target=\"_blank\" rel=\"noopener\">https://g.page/r/CXCpgfSSb3dfEBM/review</a><br /><strong>Il vostro feedback &egrave; prezioso per noi! ⭐</strong></p>\n<p style=\"text-align: left;\" data-sourcepos=\"13:1-13:187\">&nbsp;</p>\n<p style=\"text-align: left;\" data-sourcepos=\"15:1-15:72\">Grazie per la vostra comprensione e per la fiducia che riponete in noi!<br><br><i>Lo Staff di <b>Net Target Srl</b></i></p>\n</div>",
         "additionalFields": {
           "importance": "High",
           "bodyContentType": "html",
@@ -36,7 +65,7 @@
       "type": "n8n-nodes-base.microsoftOutlook",
       "typeVersion": 2,
       "position": [
-        800,
+        660,
         360
       ],
       "credentials": {
@@ -48,7 +77,72 @@
     },
     {
       "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "780e869e-4fcf-4414-b6b5-6f76c59def9c",
+              "leftValue": "={{ $json.success }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "1040d002-b0c3-4786-b7e0-4609f51a4fbb",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        880,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "true",
+        "options": {}
+      },
+      "id": "5520688f-464b-47e2-bbe4-b1f1da498e0e",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1180,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "false",
+        "options": {}
+      },
+      "id": "67838a00-dd8f-4023-adf1-79815d987120",
+      "name": "Respond to Webhook1",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1180,
+        460
+      ]
+    },
+    {
+      "parameters": {
         "path": "email-helpdesk",
+        "responseMode": "responseNode",
         "options": {}
       },
       "id": "fe105505-64d1-4b4e-93aa-4d42696b5208",
@@ -56,7 +150,7 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        580,
+        440,
         360
       ],
       "webhookId": "31a185ce-0a8d-4fc3-9979-0e0bb9a91ca2"
@@ -68,7 +162,7 @@
   },
   "staticData": null,
   "tags": [],
-  "triggerCount": 0,
-  "updatedAt": "2024-10-24T09:08:30.000Z",
-  "versionId": "750160cb-d28f-437d-a7e4-e768b5be5772"
+  "triggerCount": 1,
+  "updatedAt": "2024-10-24T14:41:02.000Z",
+  "versionId": "53477434-bc7e-4840-ae90-81f4548d32d2"
 }
