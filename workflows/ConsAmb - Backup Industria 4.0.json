@@ -1,0 +1,112 @@
+{
+  "active": true,
+  "connections": {
+    "MySQL": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-10-29T17:57:34.123Z",
+  "id": "TIoBJRn16PUzg9hS",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "ConsAmb - Backup Industria 4.0",
+  "nodes": [
+    {
+      "parameters": {
+        "table": {
+          "__rl": true,
+          "value": "lista",
+          "mode": "list",
+          "cachedResultName": "lista"
+        },
+        "dataMode": "defineBelow",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "stato",
+              "value": "1"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "1a1eac9c-8eb1-4922-9dbf-a858df7e6958",
+      "name": "MySQL",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        860,
+        340
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "V1Ig8SzwNsOI97Uy",
+          "name": "MySQL - ca_backup40"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "ok",
+        "options": {}
+      },
+      "id": "fba0f495-806c-4c67-8f76-6df1b26c5b2c",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1080,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "path": "consamb-backup40",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "abdcc64d-2e49-4623-a58e-13a7ccd33319",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        640,
+        340
+      ],
+      "webhookId": "091d16ce-1da6-496f-8bcd-d04a554e00f0"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Europe/Rome",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-10-29T18:03:34.000Z",
+  "versionId": "bf899775-7b2d-427d-83ea-1453ec8b3712"
+}
