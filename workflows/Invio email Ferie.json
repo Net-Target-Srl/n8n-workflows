@@ -48,7 +48,7 @@
           "interval": [
             {
               "field": "months",
-              "triggerAtDayOfMonth": 4,
+              "triggerAtDayOfMonth": 3,
               "triggerAtHour": 10
             }
           ]
@@ -136,6 +136,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2024-11-07T10:40:43.000Z",
-  "versionId": "17d925a5-cb2f-4f57-bba6-febd4e561d91"
+  "updatedAt": "2024-11-27T16:36:29.000Z",
+  "versionId": "03917a45-9961-4090-8efd-73be9c5671b2"
 }
