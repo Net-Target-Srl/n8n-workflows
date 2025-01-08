@@ -1,11 +1,11 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
-    "Webhook": {
+    "When clicking ‘Test workflow’": {
       "main": [
         [
           {
-            "node": "Telegram",
+            "node": "Send Email",
             "type": "main",
             "index": 0
           }
@@ -13,51 +13,47 @@
       ]
     }
   },
-  "createdAt": "2024-08-28T16:02:29.237Z",
-  "id": "cGcUtuXzXP0T5vD6",
+  "createdAt": "2025-01-07T14:25:14.825Z",
+  "id": "24N52nc2lVLu5xJY",
   "meta": {
     "templateCredsSetupCompleted": true
   },
   "name": "My workflow 4",
   "nodes": [
     {
-      "parameters": {
-        "chatId": "746570222",
-        "text": "=Nuova richiesta supporto <b>ORATORIOINFESTA</b>\nNome:  {{ $json.query.nome }}\nhttps://oratorioinfesta.it/aiuto/?id={{ $json.query.id }}",
-        "additionalFields": {
-          "appendAttribution": false,
-          "parse_mode": "HTML"
-        }
-      },
-      "id": "9c734ffa-7707-4fa0-b900-b008871b4e15",
-      "name": "Telegram",
-      "type": "n8n-nodes-base.telegram",
-      "typeVersion": 1.2,
+      "parameters": {},
+      "id": "978cea05-4621-4ed6-add3-8f716f9d90bb",
+      "name": "When clicking ‘Test workflow’",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
       "position": [
-        800,
-        280
-      ],
-      "credentials": {
-        "telegramApi": {
-          "id": "FLwX2cDEVGLGY29S",
-          "name": "Net Target BOT"
-        }
-      }
+        820,
+        340
+      ]
     },
     {
       "parameters": {
-        "path": "nuova-chat",
+        "fromEmail": "hr.zucchetti@notifiche.consamb.it",
+        "toEmail": "mattia.bergamelli@consamb.it",
+        "subject": "Prova",
+        "emailFormat": "text",
+        "text": "Prova",
         "options": {}
       },
-      "id": "fbd15d71-63d3-49e1-91d2-f1303060f008",
-      "name": "Webhook",
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 2,
+      "id": "c90d7a6b-e93c-48fd-bc4b-55eee2aa5896",
+      "name": "Send Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
       "position": [
-        580,
-        280
+        1040,
+        340
       ],
-      "webhookId": "fd1242ca-bf8a-44f1-9271-8752d1bace68"
+      "credentials": {
+        "smtp": {
+          "id": "g2fp9DWnM7waieS5",
+          "name": "notifiche.consamb.it"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -66,7 +62,7 @@
   },
   "staticData": null,
   "tags": [],
-  "triggerCount": 1,
-  "updatedAt": "2024-08-28T16:17:56.000Z",
-  "versionId": "ad779256-6582-4afb-b4a2-80615d209c94"
+  "triggerCount": 0,
+  "updatedAt": "2025-01-07T14:25:14.825Z",
+  "versionId": "75f25688-00cf-47ff-a2f6-c2828b10ba40"
 }
