@@ -1,47 +1,94 @@
 {
   "active": false,
-  "connections": {},
-  "createdAt": "2024-03-06T08:06:38.219Z",
-  "id": "zGS2zBRn1ikeyVYK",
-  "meta": null,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-01-27T08:34:11.068Z",
+  "id": "Pua1Z98ugXJ3CzYW",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "My workflow 5",
   "nodes": [
     {
-      "parameters": {
-        "formTitle": "Nuovo indirizzo privacy",
-        "formFields": {
-          "values": [
-            {
-              "fieldLabel": "email",
-              "requiredField": true
-            },
-            {
-              "fieldLabel": "nome",
-              "requiredField": true
-            }
-          ]
-        },
-        "responseMode": "lastNode",
-        "options": {}
-      },
-      "id": "108f41e7-a0d5-416d-85bf-1a7219cb88ed",
-      "name": "n8n Form Trigger",
-      "type": "n8n-nodes-base.formTrigger",
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        920,
-        420
+        460,
+        460
       ],
-      "webhookId": "f3ed426f-862c-4745-a20f-f0580481746b"
+      "id": "696b05fb-b9eb-4977-84cd-821e2161d6cc",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "jsCode": "return [\n{\n\"data\": \"iPolicyID,iProductID\\r\\n57109,17108\\r\\n57161,17108\\r\\n57288,17143\\r\\n57362,17161\\r\\n57370,17161\\r\\n57379,16667\\r\\n57405,17161\\r\\n57468,17169\\r\\n57480,16636\\r\\n57482,16636\\r\\n57580,17143\\r\\n57634,16636\\r\\n57644,17159\\r\\n57876,16070\\r\\n58070,16322\\r\\n59287,16450\\r\\n59301,16459\\r\\n\"\n}\n]"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        680,
+        460
+      ],
+      "id": "1c1c8782-ca99-48cb-8edf-258b92863603",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "operation": "toText",
+        "sourceProperty": "data",
+        "binaryPropertyName": "=data",
+        "options": {
+          "fileName": "file.csv"
+        }
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        900,
+        460
+      ],
+      "id": "97768199-8ccc-49bb-a30d-eab03f9a0422",
+      "name": "Convert to File"
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "Code": [
+      {
+        "json": {
+          "data": "iPolicyID,iProductID\r\n57109,17108\r\n57161,17108\r\n57288,17143\r\n57362,17161\r\n57370,17161\r\n57379,16667\r\n57405,17161\r\n57468,17169\r\n57480,16636\r\n57482,16636\r\n57580,17143\r\n57634,16636\r\n57644,17159\r\n57876,16070\r\n58070,16322\r\n59287,16450\r\n59301,16459\r\n"
+        }
+      }
+    ]
+  },
   "settings": {
     "executionOrder": "v1"
   },
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2024-03-06T08:06:38.219Z",
-  "versionId": "f76ded3a-7b23-4b2e-925c-59729470dfc6"
+  "updatedAt": "2025-01-27T08:34:11.068Z",
+  "versionId": "1c8221ff-de3c-44c1-889b-9ee8fa6b933f"
 }
