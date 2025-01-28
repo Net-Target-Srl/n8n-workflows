@@ -1,0 +1,127 @@
+{
+  "active": false,
+  "connections": {
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Window Buffer Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-01-27T13:47:43.542Z",
+  "id": "ZU2g5VB6R8oPni4z",
+  "meta": {
+    "templateId": "2413",
+    "templateCredsSetupCompleted": true
+  },
+  "name": "AI_TEST",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {
+          "temperature": 0.7,
+          "timeout": 25000
+        }
+      },
+      "id": "f6ca0c20-5f66-4691-be1e-1eb5b7208704",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "position": [
+        1100,
+        600
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "openAiApi": {
+          "id": "RhrJXV3TvjRKBk58",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 4
+      },
+      "id": "9c0568eb-9979-4b7e-a946-f8c695137da4",
+      "name": "Window Buffer Memory",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "position": [
+        1340,
+        620
+      ],
+      "typeVersion": 1.2
+    },
+    {
+      "parameters": {
+        "public": true,
+        "initialMessages": "Hi there! 👋\nMi chiamo Guendalina. Come posso aiutarti?",
+        "options": {
+          "showWelcomeScreen": true,
+          "subtitle": "Siamo qui per aiutarti!",
+          "title": "Supporto Gestiko"
+        }
+      },
+      "id": "08c71301-ee37-4a39-8ab1-1bca0ef1bf6d",
+      "name": "When chat message received",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "position": [
+        940,
+        380
+      ],
+      "webhookId": "a959ce9a-cd42-4d8a-8aea-6a085bea36ef",
+      "typeVersion": 1.1,
+      "notesInFlow": false
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.chatInput }}",
+        "options": {
+          "systemMessage": "=# Ruolo:\nAgisci come agente di supporto. Indaga sul database \"{{ $json.databaseName }}\" di Notion per ricercare record rilevanti, oppure per riassumere il contenuto di più records.\n\n# Formattazione output:\nIl contenuto delle risposte deve essere chiaro, consico e accurato. Non inventare risposte, basati unicamente sul contenuto del database.\nSe la richiesta è ambigua, chiedi maggiorni informazioni per identificare al meglio il problema. Non migliorare il contenuto del database, limitati ad restirutire i fatti e il contenuto dei record. Non restituire informazioni generali basate sulla tua conoscenza.\n\n# Gestione degli errori:\nIn caso mancata corrispondenza nei record del database, prova ad utilizzare dei criteri di ricerca differenti. Esempio 1: Laptop, poi Computer, poi Strumentazione. Esempio 2: Riunioni, poi riunione.\nSpiega in modo esaustivo tutti i problemi con la ricerca (esempio: mancano informazioni per trovare l'articolo più adatto).\n\n# Output:\nRestituisci informazioni chiare e concise. Puoi anche riscrivere il teso per renderlo più comprensibile oppure riassumere se necessario.\nPer informazioni lunge, mostra solo i migliori risultati e restituisci altre informazioni solo se richieste. Formatta gli URL in markdown.\n\nQuando un record è la risposta per la richiesta di un utente, restituisci sempre l'URL della pagina. Non mettere mai due link in un output."
+        }
+      },
+      "id": "324069df-2b0d-4b3c-950e-9fdb595fc575",
+      "name": "AI Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "position": [
+        1200,
+        380
+      ],
+      "typeVersion": 1.6
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 2,
+  "updatedAt": "2025-01-27T13:48:04.000Z",
+  "versionId": "4984b6c2-3e34-449b-8901-c18955d46156"
+}
