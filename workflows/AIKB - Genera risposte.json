@@ -1,0 +1,222 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL": {
+      "main": [
+        [
+          {
+            "node": "OpenAI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL1": {
+      "main": [
+        [
+          {
+            "node": "Execute Workflow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI": {
+      "main": [
+        [
+          {
+            "node": "MySQL1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-01-27T07:59:32.729Z",
+  "id": "5spwmAR1seoVaLUp",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "AIKB - Genera risposte",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "f14d6d06-c8d3-4244-82d7-eb0576980c12",
+      "name": "When clicking ‘Test workflow’",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        580,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "domande",
+          "mode": "list",
+          "cachedResultName": "domande"
+        },
+        "limit": 10,
+        "where": {
+          "values": [
+            {
+              "column": "risposta",
+              "condition": "IS NULL"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "e9f71d5b-c165-405c-b42f-13221946b246",
+      "name": "MySQL",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        800,
+        240
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "xQKTCBhADa1Zre4F",
+          "name": "KBTEST"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "table": {
+          "__rl": true,
+          "value": "domande",
+          "mode": "list",
+          "cachedResultName": "domande"
+        },
+        "dataMode": "defineBelow",
+        "columnToMatchOn": "aid",
+        "valueToMatchOn": "={{ $('MySQL').item.json.aid }}",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "risposta",
+              "value": "={{ $json.message.content }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "0842808b-979b-4108-bfe5-3a911b0f1ad8",
+      "name": "MySQL1",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        1400,
+        240
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "xQKTCBhADa1Zre4F",
+          "name": "KBTEST"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "5680fff9-e8cd-4263-83e7-6304787692b5",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        580,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "fsMqp8MPsBhZJLij",
+          "mode": "list",
+          "cachedResultName": "AIKB - Converti a Notion"
+        },
+        "options": {}
+      },
+      "id": "95b71634-37a6-412b-9c6b-c2d71c3733a7",
+      "name": "Execute Workflow",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.1,
+      "position": [
+        1580,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Agisci come operatore del supporto IT di un'azienda. Fornisci unicamente la risposta alla domanda. La risposta, se necessario, deve essere strutturata come un elenco puntato di operazioni da eseguire. Inoltre non deve essere formattata in markdown, ma unicamente in testo semplice.\nDomanda: {{ $json.domanda }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a13080f3-c2df-4497-9707-c47f46a345a8",
+      "name": "OpenAI",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.6,
+      "position": [
+        1020,
+        240
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "RhrJXV3TvjRKBk58",
+          "name": "OpenAi account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-01-27T09:43:02.000Z",
+  "versionId": "f8403c13-f4bc-4cdf-bb5b-878779a35fd4"
+}
