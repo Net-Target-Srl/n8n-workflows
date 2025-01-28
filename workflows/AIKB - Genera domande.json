@@ -1,0 +1,261 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "OpenAI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL": {
+      "main": [
+        [
+          {
+            "node": "Execute Workflow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-01-27T08:20:03.790Z",
+  "id": "Bq5hTJH8dZLQ1HXn",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "AIKB - Genera domande",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "7485023c-9bd4-4c37-bed3-74b2dc13382a",
+      "name": "When clicking ‘Test workflow’",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        580,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c776b39d-ebf7-4f5d-b993-5fbecf8cb1f0",
+              "name": "domande",
+              "value": "={{ $json.message.content }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8ced5c50-7050-45a2-a983-1a5e919547cf",
+      "name": "Edit Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1180,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-3.5-turbo",
+          "mode": "list",
+          "cachedResultName": "GPT-3.5-TURBO"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "Scrivi 10 domande per popolare una Knowledge base. Dovrai fornire solo la domanda e non le risposte. Le domande devono trattare questioni di informatica di base, che potrebbero fare degli impiegati che lavorano in ufficio.\nLe domande non devono essere numerate.\nLe domande devono essere formattate in CSV."
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d7d1b62d-e0f3-4ebe-9b4e-0460860b7fd9",
+      "name": "OpenAI",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.6,
+      "position": [
+        800,
+        240
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "RhrJXV3TvjRKBk58",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "toText",
+        "sourceProperty": "domande",
+        "binaryPropertyName": "domande",
+        "options": {}
+      },
+      "id": "cce48554-f1eb-41ee-a221-bfca36acd31b",
+      "name": "Convert to File",
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        1620,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "binaryPropertyName": "domande",
+        "options": {}
+      },
+      "id": "77f1e61c-24b3-4e98-889f-4d3889891c5f",
+      "name": "Extract from File",
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        1840,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.domande = '\"domande\"\\n'+item.json.domande;\n}\n\nreturn $input.all();"
+      },
+      "id": "7ae56e89-bb68-47ba-a487-d489a2818a00",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1400,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "table": {
+          "__rl": true,
+          "value": "domande",
+          "mode": "list",
+          "cachedResultName": "domande"
+        },
+        "dataMode": "defineBelow",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "domanda",
+              "value": "={{ $json.domande }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "5875434f-799b-4ce2-893c-df2580b9df37",
+      "name": "MySQL",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        2060,
+        240
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "xQKTCBhADa1Zre4F",
+          "name": "KBTEST"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "5spwmAR1seoVaLUp",
+          "mode": "list",
+          "cachedResultName": "AIKB - Genera risposte"
+        },
+        "options": {}
+      },
+      "id": "282f5403-f243-4e9e-bd6c-f6a95666501c",
+      "name": "Execute Workflow",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.1,
+      "position": [
+        2280,
+        240
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-01-27T08:43:41.000Z",
+  "versionId": "b966a334-0e02-496d-82bb-96490057de6e"
+}
