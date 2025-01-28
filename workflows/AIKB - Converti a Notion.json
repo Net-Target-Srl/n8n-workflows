@@ -1,0 +1,247 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL": {
+      "main": [
+        [
+          {
+            "node": "OpenAI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Notion": {
+      "main": [
+        [
+          {
+            "node": "MySQL1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI": {
+      "main": [
+        [
+          {
+            "node": "Notion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-01-27T08:46:24.831Z",
+  "id": "fsMqp8MPsBhZJLij",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "AIKB - Converti a Notion",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "f5b2c9e7-9681-429f-98cc-9229a9e07e5b",
+      "name": "When clicking ‘Test workflow’",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        580,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "domande",
+          "mode": "list",
+          "cachedResultName": "domande"
+        },
+        "limit": 10,
+        "where": {
+          "values": [
+            {
+              "column": "notion",
+              "value": "0"
+            },
+            {
+              "column": "risposta",
+              "condition": "IS NOT NULL"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "6872846f-edb2-42c1-b67f-b8bd2580db6a",
+      "name": "MySQL",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        800,
+        240
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "xQKTCBhADa1Zre4F",
+          "name": "KBTEST"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "databaseId": {
+          "__rl": true,
+          "value": "1748ec4b-f691-80f8-9bcc-c7bbd5b23243",
+          "mode": "list",
+          "cachedResultName": "Company Knowledge Base",
+          "cachedResultUrl": "https://www.notion.so/1748ec4bf69180f89bccc7bbd5b23243"
+        },
+        "title": "={{ $('MySQL').item.json.domanda }}",
+        "propertiesUi": {
+          "propertyValues": [
+            {
+              "key": "answer|rich_text",
+              "textContent": "={{ $('MySQL').item.json.risposta }}"
+            },
+            {
+              "key": "tags|multi_select",
+              "multiSelectValue": "={{ $json.message.content }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8927c73f-4362-4d96-ba3d-d1c230076ad6",
+      "name": "Notion",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [
+        1440,
+        240
+      ],
+      "credentials": {
+        "notionApi": {
+          "id": "Z4Z6BZZXwWHe5jyJ",
+          "name": "Notion account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "5bd0f85b-6e52-4c83-aad3-284ea1de76cb",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        580,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "table": {
+          "__rl": true,
+          "value": "domande",
+          "mode": "list",
+          "cachedResultName": "domande"
+        },
+        "dataMode": "defineBelow",
+        "columnToMatchOn": "aid",
+        "valueToMatchOn": "={{ $('MySQL').item.json.aid }}",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "notion",
+              "value": "1"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d18dba74-fcbd-4c0e-aaf3-1dd63de5f6d5",
+      "name": "MySQL1",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        1660,
+        240
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "xQKTCBhADa1Zre4F",
+          "name": "KBTEST"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-3.5-turbo",
+          "mode": "list",
+          "cachedResultName": "GPT-3.5-TURBO"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Data una domanda, una risposta e un elenco di tag, identifica almeno 5 e massimo 7 tag per classificare un articolo di una Knowledge Base. Non inventare tag che non sono inclusi nella lista.\nRestituisci solo i tag separati da una virgola.\n\nTags: Hardware, Software, Sistemi operativi, Reti, Sicurezza informatica, Applicazioni aziendali, Email, Backup, Archiviazione dati, Stampanti, Scanner, Telefonia, Dispositivi mobili, VPN, Accesso remoto, Virtualizzazione, Database, Cloud, Configurazioni, Troubleshooting, Aggiornamenti, Installazioni, Antivirus, Firewall, Monitoraggio, Manutenzione, Riparazioni, Licenze software, Permessi e accessi, Utenti, Account, Credenziali, Active Directory, Registri di sistema, Script, Automazione, Connettività, Wi-Fi, LAN, WAN, DNS, IP, Proxy, Errori comuni, Performance, Formattazione, Recupero dati, Compliance, Formazione, Manuali utente, FAQ, Reset password, Accesso bloccato, Problemi di stampa, Email non inviate, Sincronizzazione calendari, Problemi di rete, Connessione lenta, File corrotti, Errore applicazione, Notifiche mancanti, Timeout connessioni, Problemi di backup, Configurazioni mancanti, Accesso negato a file, Condivisione file, Problemi di integrazione, Errore di login, Problemi di aggiornamento, Configurazione dispositivi, Permessi insufficienti, Errori di sincronizzazione, Microsoft Office, Microsoft Word, Microsoft Excel, Microsoft PowerPoint, Microsoft Outlook, Microsoft Teams, Microsoft OneDrive, Macro Excel, Problemi di visualizzazione Office, Errori Word, Problemi formattazione Excel, Configurazione Outlook, Sincronizzazione email, Risposte automatiche, Cartelle condivise, Problemi di connessione Outlook, Calendari condivisi, Configurazione account Exchange, Filtro antispam, Problemi di allegati, Invio email fallito, Filtri email, Impostazioni IMAP POP, Gestione contatti, Sincronizzazione contatti.\n\nDomanda:  {{ $json.domanda }}\n\nRisposta: {{ $json.risposta }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8585692a-cef1-4a1f-a510-d872d7f566c5",
+      "name": "OpenAI",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.6,
+      "position": [
+        1020,
+        240
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "RhrJXV3TvjRKBk58",
+          "name": "OpenAi account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-01-27T12:04:57.000Z",
+  "versionId": "7b38cbe7-696b-44d0-a841-1c6bdde5ba30"
+}
