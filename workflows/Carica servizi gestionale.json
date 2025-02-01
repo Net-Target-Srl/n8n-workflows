@@ -60,11 +60,35 @@
           }
         ]
       ]
+    },
+    "Carica servizi cliente": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Crypto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2023-11-16T07:56:58.154Z",
   "id": "olSkrSu4cDCKR1QD",
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "Carica servizi gestionale",
   "nodes": [
     {
@@ -199,6 +223,37 @@
         380
       ],
       "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "Prima esecuzione conclusa. Tra 5 minuti verrà avviata la seconda per correggere eventuali errori.",
+        "options": {}
+      },
+      "id": "851804a0-c125-479c-b8c1-b1ad4a5f4ea8",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1780,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "path": "avvia-conversione-servizi-a-consumi",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "df9f84f8-086c-4a35-bac1-5c698f7e4408",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        320,
+        200
+      ],
+      "webhookId": "c41f4fa5-276a-4c52-a422-0e96da0a1b64"
     }
   ],
   "pinData": {},
@@ -219,7 +274,7 @@
       "name": "Gestionale Net Target"
     }
   ],
-  "triggerCount": 1,
-  "updatedAt": "2024-07-29T08:55:03.000Z",
-  "versionId": "834447de-49cb-48ca-b8fe-c9f7e692a123"
+  "triggerCount": 2,
+  "updatedAt": "2025-01-30T20:57:01.000Z",
+  "versionId": "f90adf89-6dac-4a06-9352-0249c8adc447"
 }
